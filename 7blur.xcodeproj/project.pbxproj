@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5868ABFB17CE657C00C46669 /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5868ABF917CE657C00C46669 /* BLRView.m */; };
-		5868ABFC17CE657C00C46669 /* BLRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5868ABFA17CE657C00C46669 /* BLRView.xib */; };
-		5868AC0917CE679C00C46669 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 5868AC0317CE679C00C46669 /* UIImage+ImageEffects.m */; };
+		58400E1217CEAADB0083EEB9 /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58400E0D17CEAADB0083EEB9 /* BLRView.m */; };
+		58400E1317CEAADB0083EEB9 /* BLRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58400E0E17CEAADB0083EEB9 /* BLRView.xib */; };
+		58400E1417CEAADB0083EEB9 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 58400E1117CEAADB0083EEB9 /* UIImage+ImageEffects.m */; };
 		58817A5B17CE55C90099DE2A /* Down-30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 58817A5717CE55C90099DE2A /* Down-30x30.png */; };
 		58817A5C17CE55C90099DE2A /* Down-30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58817A5817CE55C90099DE2A /* Down-30x30@2x.png */; };
 		58817A5D17CE55C90099DE2A /* Up-30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 58817A5917CE55C90099DE2A /* Up-30x30.png */; };
@@ -29,12 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5868ABF817CE657C00C46669 /* BLRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLRView.h; path = BLR/BLRView.h; sourceTree = "<group>"; };
-		5868ABF917CE657C00C46669 /* BLRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLRView.m; path = BLR/BLRView.m; sourceTree = "<group>"; };
-		5868ABFA17CE657C00C46669 /* BLRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLRView.xib; path = BLR/BLRView.xib; sourceTree = "<group>"; };
-		5868ABFE17CE679C00C46669 /* BLRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLRConstants.h; path = BLR/BLRConstants.h; sourceTree = "<group>"; };
-		5868AC0217CE679C00C46669 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		5868AC0317CE679C00C46669 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		58400E0B17CEAADB0083EEB9 /* BLRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLRConstants.h; sourceTree = "<group>"; };
+		58400E0C17CEAADB0083EEB9 /* BLRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLRView.h; sourceTree = "<group>"; };
+		58400E0D17CEAADB0083EEB9 /* BLRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLRView.m; sourceTree = "<group>"; };
+		58400E0E17CEAADB0083EEB9 /* BLRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BLRView.xib; sourceTree = "<group>"; };
+		58400E1017CEAADB0083EEB9 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		58400E1117CEAADB0083EEB9 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		58817A5517CE54E70099DE2A /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		58817A5717CE55C90099DE2A /* Down-30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Down-30x30.png"; sourceTree = "<group>"; };
 		58817A5817CE55C90099DE2A /* Down-30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Down-30x30@2x.png"; sourceTree = "<group>"; };
@@ -75,14 +75,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5868ABFF17CE679C00C46669 /* Categories */ = {
+		58400E0F17CEAADB0083EEB9 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				5868AC0217CE679C00C46669 /* UIImage+ImageEffects.h */,
-				5868AC0317CE679C00C46669 /* UIImage+ImageEffects.m */,
+				58400E1017CEAADB0083EEB9 /* UIImage+ImageEffects.h */,
+				58400E1117CEAADB0083EEB9 /* UIImage+ImageEffects.m */,
 			);
-			name = Categories;
-			path = BLR/Categories;
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		58817A5617CE55C90099DE2A /* Images */ = {
@@ -159,11 +158,11 @@
 		58AB2E3517CE4A7A00576D37 /* BLR */ = {
 			isa = PBXGroup;
 			children = (
-				5868ABFF17CE679C00C46669 /* Categories */,
-				5868ABFE17CE679C00C46669 /* BLRConstants.h */,
-				5868ABF817CE657C00C46669 /* BLRView.h */,
-				5868ABF917CE657C00C46669 /* BLRView.m */,
-				5868ABFA17CE657C00C46669 /* BLRView.xib */,
+				58400E0B17CEAADB0083EEB9 /* BLRConstants.h */,
+				58400E0C17CEAADB0083EEB9 /* BLRView.h */,
+				58400E0D17CEAADB0083EEB9 /* BLRView.m */,
+				58400E0E17CEAADB0083EEB9 /* BLRView.xib */,
+				58400E0F17CEAADB0083EEB9 /* Categories */,
 			);
 			path = BLR;
 			sourceTree = "<group>";
@@ -248,7 +247,7 @@
 				58817A5E17CE55C90099DE2A /* Up-30x30@2x.png in Resources */,
 				58AB2E0A17CE491100576D37 /* InfoPlist.strings in Resources */,
 				58817A6317CE59420099DE2A /* Countries.plist in Resources */,
-				5868ABFC17CE657C00C46669 /* BLRView.xib in Resources */,
+				58400E1317CEAADB0083EEB9 /* BLRView.xib in Resources */,
 				58817A5D17CE55C90099DE2A /* Up-30x30.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,9 +259,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5868AC0917CE679C00C46669 /* UIImage+ImageEffects.m in Sources */,
 				58AB2E4117CE4BA300576D37 /* StaticBlurVC.m in Sources */,
-				5868ABFB17CE657C00C46669 /* BLRView.m in Sources */,
+				58400E1217CEAADB0083EEB9 /* BLRView.m in Sources */,
+				58400E1417CEAADB0083EEB9 /* UIImage+ImageEffects.m in Sources */,
 				58AB2E3E17CE4B8900576D37 /* LiveBlurVC.m in Sources */,
 				58AB2E1017CE491100576D37 /* AppDelegate.m in Sources */,
 				58AB2E0C17CE491100576D37 /* main.m in Sources */,
