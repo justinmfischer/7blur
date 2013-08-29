@@ -7,7 +7,10 @@
 //
 
 #import "LiveBlurVC.h"
+#import "CountryManager.h"
 #import "Utilities.h"
+#import "CountryCell.h"
+#import "BLRView.h"
 
 @interface LiveBlurVC ()
 
@@ -18,12 +21,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.countriesArray = [Utilities loadCountries];
+    UINib *nib = [UINib nibWithNibName:@"CountryCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"CountryCell"];
+    
+    self.blrView = [BLRView load:self.tableView];
+    [self.view addSubview:self.blrView];
 }
 
 - (IBAction) toggleViewDirection:(id) sender {
     switch (self.viewDirection) {
         case KShouldMoveDown: {
+            
+            [self.blrView blurWithColor:[UIColor redColor] updateInterval:.15f];
+            [self.blrView slideDown];
             
             self.viewDirection = KShouldMoveUp;
             self.viewDirectionButton.image = [UIImage imageNamed:@"Up-30x30"];
@@ -32,6 +42,8 @@
         }
             
         case KShouldMoveUp: {
+            
+            [self.blrView slideUp];
             
             self.viewDirection = KShouldMoveDown;
             self.viewDirectionButton.image = [UIImage imageNamed:@"Down-30x30"];
@@ -44,25 +56,31 @@
     }
 }
 
+-(void) viewWillDisappear:(BOOL)animated {
+    [self.blrView unload];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.countriesArray count];
+    return [[CountryManager sharedManager].countryCodes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
     
-    UITableViewCell *cell = nil;
+    CountryCell *cell = nil;
     
-    cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"CountryCell"];
     
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[CountryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CountryCell"];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.countriesArray objectAtIndex:indexPath.row]];
+    cell.countryName.text = [NSString stringWithFormat:@"%@", [[CountryManager sharedManager].countryNames objectAtIndex:indexPath.row]];
+    
+    cell.countryFlag.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [[CountryManager sharedManager].countryCodes objectAtIndex:indexPath.row]]];
     
     return cell;
 }

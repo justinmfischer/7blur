@@ -39,57 +39,64 @@
 
 -(void) awakeFromNib {
     self.gripBarView.layer.cornerRadius = 6;
-    
-    //[self liveBlurBackground];
 }
 
 - (void) unload {
+    if(self.timer != nil) {
+        dispatch_source_cancel(self.timer);
+        self.timer = nil;
+    }
+    
     [self removeFromSuperview];
 }
 
--(void) liveBlurBackground {
-    self.timer = CreateDispatchTimer(.10f * NSEC_PER_SEC,
-                                                   1ull * NSEC_PER_SEC,
-                                                   dispatch_queue_create(KAsyncQueueName, NULL),
-                                                   ^{ [self blur]; });
-}
-
 - (void) blurBackground {
-    UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [[[self window] screen] scale]);
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [[[self window] screen] scale]);
+        
+        int x = 0;
+        int y = 0;
+        int w = CGRectGetWidth(self.parent.frame);
+        int h = CGRectGetHeight(self.parent.frame);
+        
+        [self.parent drawViewHierarchyInRect:CGRectMake(x, y, w, h) afterScreenUpdates:NO];
+        
+        __block UIImage *newBGImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
     
-    int x = 0;
-    int y = 0;
-    int w = CGRectGetWidth(self.parent.frame);
-    int h = CGRectGetHeight(self.parent.frame);
+        dispatch_async(dispatch_queue_create(KAsyncQueueName, NULL), ^{
+            newBGImage = [newBGImage applyTintEffectWithColor:self.blurColor];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                self.backgroundImageView.image = newBGImage;
+            });
+            
+        });
     
-    [self.parent drawViewHierarchyInRect:CGRectMake(x, y, w, h) afterScreenUpdates:NO];
-    
-    UIImage *newBGImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    newBGImage = [newBGImage applyTintEffectWithColor:[UIColor blackColor]];
+    //NSLog(@"Fire");
+}
 
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        self.backgroundImageView.image = newBGImage;
+- (void) blurWithColor:(UIColor *) color {
+    self.blurColor = color;
+    self.blurType = KStaticBlur;
+    
+    [self blurBackground];
+}
+
+- (void) blurWithColor:(UIColor *) color updateInterval:(float) interval {
+    self.blurType = KLiveBlur;
+    
+    self.timer = CreateDispatchTimer(interval * NSEC_PER_SEC, 1ull * NSEC_PER_SEC, dispatch_get_main_queue(), ^{[self blurWithColor:color];
     });
 }
 
-- (void) blur {
-    dispatch_async(dispatch_queue_create(KAsyncQueueName, NULL), ^{
-        [self blurBackground];
-    });
-}
-
-    dispatch_source_t CreateDispatchTimer(uint64_t interval,
-                                      uint64_t leeway,
-                                      dispatch_queue_t queue,
-                                      dispatch_block_t block) {
+dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispatch_queue_t queue, dispatch_block_t block) {
     
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
-                                                     0, 0, queue);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    
     if (timer) {
         dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), interval, leeway);
         dispatch_source_set_event_handler(timer, block);
+        
         dispatch_resume(timer);
     }
     
@@ -102,18 +109,24 @@
         
         self.frame = CGRectMake(0, 64, 320, h);
         self.alpha = 1;
+        
     } completion:^(BOOL finished) {
-        dispatch_async(dispatch_queue_create(KAsyncQueueName, NULL), ^{
-            [self blur];
-        });
+        if(self.blurType == KStaticBlur) {
+            [self blurWithColor: self.blurColor];
+        }
     }];
 }
 
 - (void) slideUp {
+    if(self.timer != nil) {
+        dispatch_source_cancel(self.timer);
+        self.timer = nil;
+    }
+    
     [UIView animateWithDuration:0.15f animations:^{
         int h = self.frame.size.height;
         
-        self.frame = CGRectMake(0, -(self.frame.size.height + 64), 320, h);
+        self.frame = CGRectMake(0, -(h + 64), 320, h);
         self.alpha = 0;
     } completion:^(BOOL finished) {
         

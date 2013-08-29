@@ -64,8 +64,8 @@
             } completion:^(BOOL finished) {
                 
             }];
-            
-            [self.blrView blur];
+
+            [self.blrView blurWithColor:[UIColor darkTextColor]];
             [self.blrView slideDown];
             
             self.viewDirection = KShouldMoveUp;
