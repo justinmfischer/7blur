@@ -54,7 +54,7 @@
         UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [[[self window] screen] scale]);
         
         int x = 0;
-        int y = 0;
+        int y = -64;
         int w = CGRectGetWidth(self.parent.frame);
         int h = CGRectGetHeight(self.parent.frame);
         
