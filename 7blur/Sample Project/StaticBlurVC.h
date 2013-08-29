@@ -13,7 +13,6 @@
 @interface StaticBlurVC : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) IBOutlet UITableView *tableView;
-@property(nonatomic, strong) NSArray *countriesArray;
 @property(nonatomic, strong) IBOutlet UIView *blackoutView;
 @property(nonatomic, strong) BLRView *blrView;
 @property(nonatomic, assign) ViewDirection viewDirection;

@@ -7,7 +7,9 @@
 //
 
 #import "StaticBlurVC.h"
+#import "CountryManager.h"
 #import "Utilities.h"
+#import "CountryCell.h"
 #import "BLRView.h"
 
 @interface StaticBlurVC ()
@@ -18,8 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.countriesArray = [Utilities loadCountries];
+    
+    UINib *nib = [UINib nibWithNibName:@"CountryCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"CountryCell"];
     
     self.blrView = [BLRView load:self.tableView];
     [self.view addSubview:self.blrView];
@@ -30,20 +33,22 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.countriesArray count];
+    return [[CountryManager sharedManager].countryCodes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
     
-    UITableViewCell *cell = nil;
+    CountryCell *cell = nil;
     
-    cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"CountryCell"];
     
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[CountryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CountryCell"];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.countriesArray objectAtIndex:indexPath.row]];
+    cell.countryName.text = [NSString stringWithFormat:@"%@", [[CountryManager sharedManager].countryNames objectAtIndex:indexPath.row]];
+    
+    cell.countryFlag.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [[CountryManager sharedManager].countryCodes objectAtIndex:indexPath.row]]];
     
     return cell;
 }
