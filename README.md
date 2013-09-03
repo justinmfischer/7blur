@@ -8,11 +8,11 @@ IOS 7 introduces a new efficient snapshot API. The 7blur project builds apron th
 7blur supports both two styles of blur, two styles of positioning and many blur color components.
 
 * **Supported blurs**
- * Live (realtime) blur
+ * Live real time blur
  * Static blur
 
 * **Support positioning**
- * Dropdown menu style
+ * Drop down menu style
  * Fixed position
 
 * **Blur Color Components**
@@ -24,8 +24,14 @@ IOS 7 introduces a new efficient snapshot API. The 7blur project builds apron th
 By combining the attributes above one can produce many desired visual effects and human interfaces. 7blur only has a handful of API tasks and the view content can be visually edited in Interface Builder for productivity. The next section will go over the API followed by common use cases contained in the sample project. Let's get started.
 
 ## Getting Started
+7blur requires iOS 7 and linking the Accelerate.framework to help with image processing (DSP). Integration is simple and entails 3 tasks. (1) Loading the view and possibly sliding it into place for drop down menu style, (2) blurring it with color components and lastly (3) unloading the view to remove. The API is listed below for reference.
+
+## API
+
 ```Objective-C
-//Dropdown menu style
+BLRView.h
+
+//Drop down menu style
 + (BLRView *) load:(UIView *) view;
 
 //Fixed position style
@@ -34,43 +40,45 @@ By combining the attributes above one can produce many desired visual effects an
 //Remove
 - (void) unload;
 
-//Up
+//Down
 - (void) slideDown;
 
-//Down
+//Up
 - (void) slideUp;
 
 //Static blur
 - (void) blurWithColor:(BLRColorComponents *) components;
 
-//Live (realtime) blur
+//Live real time blur
 - (void) blurWithColor:(BLRColorComponents *) components updateInterval:(float) interval;
 ````
 
-* **1** : _..._
-* **2** : _...._
-* **3** : _...._
+## Code : Sample Project
+The sample Xcode project contains (3) common iOS 7 use cases.
+
+## 1. Live real time blur
+This is an example of the drop down menu style live blur. Background content is blurred in real time behind the foreground.
 
 ```Objective-C
-...
+code
 ````
 
-## Required Linked Frameworks
-
-* **Accelerate.framework**
-* **CoreLocation.framework**
-* **CFNetwork.framework**
-* **SystemConfiguration.framework**
-
-## Code : Sample Project 
+## 2. Static blur
+Similar to the example above but this version stops the UITableView from scrolling, fades in a vignette and then drops down a static blurred view. Background content is blurred using a dark color behind the foreground and the touch events are disable.
 
 ```Objective-C
-...
+code
 ````
 
+## 3. Live positioned blur
+The final example differs from the previous two by supporting view positioning inside a subview.
+
 ```Objective-C
-...
+code
 ````
+
+## Interface Builder
+7blur can be customized for many use cases entirely visual using Interface Builder. This promotes the MVC design pattern and increases productivity.
 
 ## Performance and Implementation Details
 
