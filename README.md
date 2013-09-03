@@ -1,4 +1,3 @@
-
 ```HTML
 Note : ...
 ```
@@ -15,7 +14,7 @@ Note : ...
 
 ```Objective-C
 (....h)
-```
+````
 
 ## Required Linked Frameworks
 
@@ -39,7 +38,6 @@ Note : ...
 
 ## Stock Photos
 ...
-```
 
 ## Thread-Safety
 
