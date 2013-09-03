@@ -64,4 +64,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 * Justin M Fischer : _justinmfischer@gmail.com_
 
 ## Links
-...
+* iOS 7 UI Transition Guide
+* iOS Human Interface Guidelines
