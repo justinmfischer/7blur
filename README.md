@@ -13,7 +13,7 @@ Note : ...
 * **3** : _...._
 
 ```Objective-C
-(....h)
+...
 ````
 
 ## Required Linked Frameworks
@@ -27,11 +27,11 @@ Note : ...
 
 ```Objective-C
 ...m
-```
+````
 
 ```Objective-C
 ...
-```
+````
 
 ## Cache & Timeout Details
 ...
