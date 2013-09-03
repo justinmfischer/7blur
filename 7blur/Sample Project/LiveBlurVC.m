@@ -32,7 +32,7 @@
     switch (self.viewDirection) {
         case KShouldMoveDown: {
             
-            [self.blrView blurWithColor:[UIColor redColor] updateInterval:.15f];
+            [self.blrView blurWithUpdateInterval:.2f];
             [self.blrView slideDown];
             
             self.viewDirection = KShouldMoveUp;
@@ -54,10 +54,6 @@
         default:
             break;
     }
-}
-
--(void) viewWillDisappear:(BOOL)animated {
-    [self.blrView unload];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -83,6 +79,10 @@
     cell.countryFlag.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [[CountryManager sharedManager].countryCodes objectAtIndex:indexPath.row]]];
     
     return cell;
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [self.blrView unload];
 }
 
 @end

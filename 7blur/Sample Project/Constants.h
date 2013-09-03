@@ -10,3 +10,8 @@ typedef enum {
     KShouldMoveDown = 0,
     KShouldMoveUp = 1
 } ViewDirection;
+
+typedef enum {
+    KShouldPresent = 0,
+    KShouldDismiss = 1
+} ViewDisplayAction;

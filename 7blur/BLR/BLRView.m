@@ -1,14 +1,14 @@
 //
-//  UIDrinkDirectoryFiltersVC.m
-//  drink-In-my-hand
+//  UBLRView.m
+//  7blur
 //
-//  Created by JUSTIN M FISCHER on 8/21/13.
-//  Copyright (c) 2013 Fun Touch Apps, LLC. All rights reserved.
+//  Created by JUSTIN M FISCHER on 9/02/13.
+//  Copyright (c) 2013 Justin M Fischer. All rights reserved.
 //
 
 #import "BLRView.h"
-#import "BLRConstants.h"
 #import "UIImage+ImageEffects.h"
+#import "UIImage+Resize.h"
 
 @interface BLRView ()
 
@@ -24,17 +24,26 @@
     return self;
 }
 
-+ (BLRView *) load:(UIView *) parent {
-    BLRView *view = [[[NSBundle mainBundle] loadNibNamed:@"BLRView" owner:nil options:nil] objectAtIndex:0];
++ (BLRView *) load:(UIView *) view {
+    BLRView *blur = [[[NSBundle mainBundle] loadNibNamed:@"BLRView" owner:nil options:nil] objectAtIndex:0];
     
-    view.parent = parent;
+    blur.parent = view;
+    blur.location = CGPointMake(0, 64);
     
-    int w = view.frame.size.width;
-    int h = view.frame.size.height;
+    blur.frame = CGRectMake(blur.location.x, -(blur.frame.size.height + blur.location.y), blur.frame.size.width, blur.frame.size.height);
     
-    view.frame = CGRectMake(0, -(h + 64), w, h);
+    return blur;
+}
+
++ (BLRView *) loadWithLocation:(CGPoint) point parent:(UIView *) view {
+    BLRView *blur = [[[NSBundle mainBundle] loadNibNamed:@"BLRView" owner:nil options:nil] objectAtIndex:0];
     
-    return view;
+    blur.parent = view;
+    blur.location = point;
+    
+    blur.frame = CGRectMake(0, 0, blur.frame.size.width, blur.frame.size.height);
+    
+    return blur;
 }
 
 -(void) awakeFromNib {
@@ -43,6 +52,7 @@
 
 - (void) unload {
     if(self.timer != nil) {
+        
         dispatch_source_cancel(self.timer);
         self.timer = nil;
     }
@@ -51,42 +61,41 @@
 }
 
 - (void) blurBackground {
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [[[self window] screen] scale]);
-        
-        int x = 0;
-        int y = -64;
-        int w = CGRectGetWidth(self.parent.frame);
-        int h = CGRectGetHeight(self.parent.frame);
-        
-        [self.parent drawViewHierarchyInRect:CGRectMake(x, y, w, h) afterScreenUpdates:NO];
-        
-        __block UIImage *newBGImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.parent.frame), CGRectGetHeight(self.parent.frame)), NO, 1);
     
-        dispatch_async(dispatch_queue_create(KAsyncQueueName, NULL), ^{
-            newBGImage = [newBGImage applyTintEffectWithColor:self.blurColor];
-            
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                self.backgroundImageView.image = newBGImage;
-            });
-            
+    [self.parent drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.parent.frame), CGRectGetHeight(self.parent.frame)) afterScreenUpdates:NO];
+
+    __block UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+        snapshot = [snapshot croppedImage:CGRectMake(self.location.x, self.location.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+        
+        snapshot = [snapshot resizedImage:CGSizeMake(CGRectGetWidth(self.frame) / 4, CGRectGetHeight(self.frame) / 4) interpolationQuality:kCGInterpolationLow];
+        
+        UIColor *tintColor = [UIColor colorWithWhite:.8f alpha:.2f];
+        snapshot = [snapshot applyBlurWithRadius:6 tintColor:tintColor saturationDeltaFactor:1.8f maskImage:nil];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.backgroundImageView.image = snapshot;
         });
-    
-    //NSLog(@"Fire");
+    });
 }
 
-- (void) blurWithColor:(UIColor *) color {
-    self.blurColor = color;
-    self.blurType = KStaticBlur;
+- (void) blur {
+    if(self.blurType == KBlurUndefined) {
+        self.blurType = KStaticBlur;
+    }
     
     [self blurBackground];
 }
 
-- (void) blurWithColor:(UIColor *) color updateInterval:(float) interval {
+- (void) blurWithUpdateInterval:(float) interval {
     self.blurType = KLiveBlur;
     
-    self.timer = CreateDispatchTimer(interval * NSEC_PER_SEC, 1ull * NSEC_PER_SEC, dispatch_get_main_queue(), ^{[self blurWithColor:color];
-    });
+    self.timer = CreateDispatchTimer(interval * NSEC_PER_SEC, 1ull * NSEC_PER_SEC, dispatch_get_main_queue(), ^{[self blur];});
 }
 
 dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispatch_queue_t queue, dispatch_block_t block) {
@@ -105,14 +114,13 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
 
 - (void) slideDown {
     [UIView animateWithDuration:0.25f animations:^{
-        int h = self.frame.size.height;
         
-        self.frame = CGRectMake(0, 64, 320, h);
+        self.frame = CGRectMake(self.location.x, self.location.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
         self.alpha = 1;
         
     } completion:^(BOOL finished) {
         if(self.blurType == KStaticBlur) {
-            [self blurWithColor: self.blurColor];
+            [self blur];
         }
     }];
 }
@@ -124,10 +132,10 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     }
     
     [UIView animateWithDuration:0.15f animations:^{
-        int h = self.frame.size.height;
         
-        self.frame = CGRectMake(0, -(h + 64), 320, h);
+        self.frame = CGRectMake(self.location.x, -(self.frame.size.height + self.location.y), self.frame.size.width, self.frame.size.height);
         self.alpha = 0;
+        
     } completion:^(BOOL finished) {
         
     }];

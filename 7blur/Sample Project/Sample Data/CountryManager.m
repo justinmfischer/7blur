@@ -27,7 +27,6 @@ static CountryManager *sharedManager = nil;
 	
     if (self != nil) {
         [self load];
-        [self sort];
     }
     
 	return self;
@@ -36,15 +35,14 @@ static CountryManager *sharedManager = nil;
 -(void) load {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Countries" ofType:@"plist"];
     self.countryDictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
-}
-
--(void) sort {
+    
     self.countryNames = [NSMutableArray array];
-    self.countryCodes = [[self.countryDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    self.countryCodes = [self.countryDictionary allKeys];
     
     for (NSString *code in self.countryCodes) {
         [self.countryNames addObject:[self.countryDictionary objectForKey:code]];
     }
+
 }
 
 @end

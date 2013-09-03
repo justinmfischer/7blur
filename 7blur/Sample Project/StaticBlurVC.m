@@ -23,7 +23,7 @@
     
     UINib *nib = [UINib nibWithNibName:@"CountryCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CountryCell"];
-    
+        
     self.blrView = [BLRView load:self.tableView];
     [self.view addSubview:self.blrView];
 }
@@ -65,7 +65,7 @@
                 
             }];
 
-            [self.blrView blurWithColor:[UIColor darkTextColor]];
+            [self.blrView blur];
             [self.blrView slideDown];
             
             self.viewDirection = KShouldMoveUp;
@@ -93,6 +93,10 @@
         default:
             break;
     }
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    [self.blrView unload];
 }
 
 @end
