@@ -25,6 +25,8 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CountryCell"];
         
     self.blrView = [BLRView load:self.tableView];
+    self.blrView.textView.textColor = [UIColor whiteColor];
+    
     [self.view addSubview:self.blrView];
 }
 
@@ -65,7 +67,7 @@
                 
             }];
 
-            [self.blrView blur];
+            [self.blrView blurWithColor:[BLRColorComponents darkEffect]];
             [self.blrView slideDown];
             
             self.viewDirection = KShouldMoveUp;

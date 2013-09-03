@@ -32,7 +32,7 @@
     switch (self.viewDirection) {
         case KShouldMoveDown: {
             
-            [self.blrView blurWithUpdateInterval:.2f];
+            [self.blrView blurWithColor:[BLRColorComponents lightEffect] updateInterval:.2f];
             [self.blrView slideDown];
             
             self.viewDirection = KShouldMoveUp;

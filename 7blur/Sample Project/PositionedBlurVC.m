@@ -54,7 +54,7 @@
             self.foregroundView.frame = CGRectMake(point.x, point.y, CGRectGetWidth(self.blrView.frame), CGRectGetHeight(self.blrView.frame));
             
             [self.foregroundView addSubview:self.blrView];
-            [self.blrView blurWithUpdateInterval:.20];
+            [self.blrView  blurWithColor:[BLRColorComponents lightEffect] updateInterval:.2f];
             
             self.viewDisplayAction = KShouldDismiss;
             

@@ -29,8 +29,8 @@
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Realtime iOS 7 blur - UITableView" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vd2-yO-EeI">
-                                                    <rect key="frame" x="15" y="47" width="188" height="15"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Real time iOS 7 blur - UITableView" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vd2-yO-EeI">
+                                                    <rect key="frame" x="15" y="47" width="191" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -190,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xr2-WF-tCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="723"/>
+            <point key="canvasLocation" x="1595" y="30"/>
         </scene>
         <!--Static BlurVC - iOS 7 Static Blur-->
         <scene sceneID="4Cw-zc-Xvm">
@@ -238,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KcZ-Mx-Dhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="344"/>
+            <point key="canvasLocation" x="1193" y="424"/>
         </scene>
         <!--Live BlurVC - iOS 7 Live Blur-->
         <scene sceneID="azS-Xg-CYm">
@@ -278,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEf-05-glX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="-372"/>
+            <point key="canvasLocation" x="1193" y="-428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wyx-MB-8vV">
@@ -293,7 +293,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fzM-zp-kSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="142" y="30"/>
+            <point key="canvasLocation" x="198" y="30"/>
         </scene>
     </scenes>
     <resources>

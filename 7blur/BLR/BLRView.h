@@ -13,12 +13,15 @@ typedef enum {
 
 } BlurType;
 
+@class BLRColorComponents;
 @interface BLRView : UIView
 
 @property(nonatomic, weak) UIView *parent;
 @property(nonatomic, assign) CGPoint location;
 @property(nonatomic, assign) BlurType blurType;
+@property(nonatomic, strong) BLRColorComponents *colorComponents;
 @property(nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
+@property(nonatomic, strong) IBOutlet UITextView *textView;
 @property(nonatomic, strong) IBOutlet UIView *gripBarView;
 @property(nonatomic, strong) dispatch_source_t timer;
 
@@ -28,7 +31,19 @@ typedef enum {
 - (void) unload;
 - (void) slideDown;
 - (void) slideUp;
-- (void) blur;
-- (void) blurWithUpdateInterval:(float) interval;
+- (void) blurWithColor:(BLRColorComponents *) components;
+- (void) blurWithColor:(BLRColorComponents *) components updateInterval:(float) interval;
+
+@end
+
+@interface BLRColorComponents : NSObject
+
+@property(nonatomic, assign) CGFloat radius;
+@property(nonatomic, strong) UIColor *tintColor;
+@property(nonatomic, assign) CGFloat saturationDeltaFactor;
+@property(nonatomic, strong) UIImage *maskImage;
+
++ (BLRColorComponents *) lightEffect;
++ (BLRColorComponents *) darkEffect;
 
 @end

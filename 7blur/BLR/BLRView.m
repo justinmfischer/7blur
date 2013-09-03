@@ -11,7 +11,6 @@
 #import "UIImage+Resize.h"
 
 @interface BLRView ()
-
 @end
 
 @implementation BLRView
@@ -73,10 +72,11 @@
     
         snapshot = [snapshot croppedImage:CGRectMake(self.location.x, self.location.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
         
-        snapshot = [snapshot resizedImage:CGSizeMake(CGRectGetWidth(self.frame) / 4, CGRectGetHeight(self.frame) / 4) interpolationQuality:kCGInterpolationLow];
+        const int scaleFactor = 4;
         
-        UIColor *tintColor = [UIColor colorWithWhite:.8f alpha:.2f];
-        snapshot = [snapshot applyBlurWithRadius:6 tintColor:tintColor saturationDeltaFactor:1.8f maskImage:nil];
+        snapshot = [snapshot resizedImage:CGSizeMake(CGRectGetWidth(self.frame) / scaleFactor, CGRectGetHeight(self.frame) / scaleFactor) interpolationQuality:kCGInterpolationLow];
+        
+        snapshot = [snapshot applyBlurWithRadius:self.colorComponents.radius tintColor:self.colorComponents.tintColor saturationDeltaFactor:self.colorComponents.saturationDeltaFactor maskImage:self.colorComponents.maskImage];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.backgroundImageView.image = snapshot;
@@ -84,18 +84,21 @@
     });
 }
 
-- (void) blur {
+- (void) blurWithColor:(BLRColorComponents *) components {
     if(self.blurType == KBlurUndefined) {
+        
         self.blurType = KStaticBlur;
+        self.colorComponents = components;
     }
     
     [self blurBackground];
 }
 
-- (void) blurWithUpdateInterval:(float) interval {
+- (void) blurWithColor:(BLRColorComponents *) components updateInterval:(float) interval {
     self.blurType = KLiveBlur;
+    self.colorComponents = components;
     
-    self.timer = CreateDispatchTimer(interval * NSEC_PER_SEC, 1ull * NSEC_PER_SEC, dispatch_get_main_queue(), ^{[self blur];});
+    self.timer = CreateDispatchTimer(interval * NSEC_PER_SEC, 1ull * NSEC_PER_SEC, dispatch_get_main_queue(), ^{[self blurWithColor:components];});
 }
 
 dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispatch_queue_t queue, dispatch_block_t block) {
@@ -120,13 +123,14 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
         
     } completion:^(BOOL finished) {
         if(self.blurType == KStaticBlur) {
-            [self blur];
+            [self blurWithColor:self.colorComponents];
         }
     }];
 }
 
 - (void) slideUp {
     if(self.timer != nil) {
+        
         dispatch_source_cancel(self.timer);
         self.timer = nil;
     }
@@ -139,6 +143,35 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     } completion:^(BOOL finished) {
         
     }];
+}
+
+@end
+
+@interface BLRColorComponents()
+@end
+
+@implementation BLRColorComponents
+
++ (BLRColorComponents *) lightEffect {
+    BLRColorComponents *components = [[BLRColorComponents alloc] init];
+    
+    components.radius = 6;
+    components.tintColor = [UIColor colorWithWhite:.8f alpha:.2f];
+    components.saturationDeltaFactor = 1.8f;
+    components.maskImage = nil;
+    
+    return components;
+}
+
++ (BLRColorComponents *) darkEffect {
+    BLRColorComponents *components = [[BLRColorComponents alloc] init];
+    
+    components.radius = 6;
+    components.tintColor = [UIColor colorWithRed:.1f green:.1 blue:.1f alpha:.8f];
+    components.saturationDeltaFactor = 1.8f;
+    components.maskImage = nil;
+    
+    return components;
 }
 
 @end

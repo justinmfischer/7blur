@@ -32,6 +32,7 @@
             <connections>
                 <outlet property="backgroundImageView" destination="n1y-sF-jWY" id="uOo-pf-WHY"/>
                 <outlet property="gripBarView" destination="opt-9e-efz" id="fg9-Px-nni"/>
+                <outlet property="textView" destination="UcB-Uj-wyj" id="aFn-L2-rDo"/>
             </connections>
         </view>
     </objects>
