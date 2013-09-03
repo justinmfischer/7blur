@@ -2,11 +2,50 @@
 Note : ...
 ````
 
-##Overview
-...
+## Overview
+IOS 7 introduces a new efficient snapshot API. The 7blur project builds apron these frameworks to produce control center and notification center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 is no longer under developer NDA. 7blur can be used free and improved by the community.
+
+7blur supports both two styles of blur, two styles of positioning and many blur color components.
+
+* **Supported blurs**
+ * Live (realtime) blur
+ * Static blur
+
+* **Support positioning**
+ * Dropdown menu style
+ * Fixed position
+
+* **Blur Color Components**
+ * Blur radius
+ * Tint color
+ * Saturation Delta
+ * Image Mask
+
+By combining the attributes above one can produce many desired visual effects and human interfaces. 7blur only has a handful of API tasks and the view content can be visually edited in Interface Builder for productivity. The next section will go over the API followed by common use cases contained in the sample project. Let's get started.
 
 ## Getting Started
-...
+```Objective-C
+//Dropdown menu style
++ (BLRView *) load:(UIView *) view;
+
+//Fixed position style
++ (BLRView *) loadWithLocation:(CGPoint) point parent:(UIView *) view;
+
+//Remove
+- (void) unload;
+
+//Up
+- (void) slideDown;
+
+//Down
+- (void) slideUp;
+
+//Static blur
+- (void) blurWithColor:(BLRColorComponents *) components;
+
+//Live (realtime) blur
+- (void) blurWithColor:(BLRColorComponents *) components updateInterval:(float) interval;
+````
 
 * **1** : _..._
 * **2** : _...._
@@ -33,21 +72,12 @@ Note : ...
 ...
 ````
 
-## Cache & Timeout Details
-...
-
-## Stock Photos
-...
-
-## Thread-Safety
+## Performance and Implementation Details
 
 ## History
 Initial release : _9/03/2013_
 
-## Acknowledgements
-
-## Copyright and Software License
-
+## Copyright and Software Licenses
 * UIImage Alpha, Resize, RoundedCorner Category Methods : _Trevor Harmon_
 * UIImage Image Effects Category Methods : _Apple, Inc._
 
@@ -64,5 +94,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 * Justin M Fischer : _justinmfischer@gmail.com_
 
 ## Links
-* iOS 7 UI Transition Guide
-* iOS Human Interface Guidelines
+* [iOS 7 UI Transition Guide](https://developer.apple.com/library/etc/redirect/WWDR/iOSUITransitionGuide)
+* [iOS Human Interface Guidelines](https://developer.apple.com/library/etc/redirect/WWDR/iOSHIG)
