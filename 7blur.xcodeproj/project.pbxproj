@@ -296,6 +296,7 @@
 		58D1E85817D4F13F00617ED8 /* sallie-gardner-300x200-14.png in Resources */ = {isa = PBXBuildFile; fileRef = 58D1E84917D4F13F00617ED8 /* sallie-gardner-300x200-14.png */; };
 		58D1E85917D4F13F00617ED8 /* sallie-gardner-300x200-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 58D1E84A17D4F13F00617ED8 /* sallie-gardner-300x200-15.png */; };
 		58D1E85C17D4F36500617ED8 /* PositionedBlurVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E85B17D4F36500617ED8 /* PositionedBlurVC.m */; };
+		58DB984D17D6A9BF0057F232 /* Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58DB984B17D6A9BF0057F232 /* Icon-60x60@2x.png */; };
 		58E7C8F617CE5C3100BE522C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58AB2E1117CE491100576D37 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -606,6 +607,7 @@
 		58D1E84A17D4F13F00617ED8 /* sallie-gardner-300x200-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sallie-gardner-300x200-15.png"; sourceTree = "<group>"; };
 		58D1E85A17D4F36500617ED8 /* PositionedBlurVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionedBlurVC.h; sourceTree = "<group>"; };
 		58D1E85B17D4F36500617ED8 /* PositionedBlurVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionedBlurVC.m; sourceTree = "<group>"; };
+		58DB984B17D6A9BF0057F232 /* Icon-60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60x60@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -914,6 +916,7 @@
 		58817A5617CE55C90099DE2A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				58DB984B17D6A9BF0057F232 /* Icon-60x60@2x.png */,
 				58D1E83B17D4F13F00617ED8 /* Eadweard-Muybridge */,
 				58817A5717CE55C90099DE2A /* Down-30x30.png */,
 				58817A5817CE55C90099DE2A /* Down-30x30@2x.png */,
@@ -1139,6 +1142,7 @@
 				585D945517D542DA00BBE063 /* LK.png in Resources */,
 				585D93E617D542DA00BBE063 /* BD.png in Resources */,
 				585D941A17D542DA00BBE063 /* FJ.png in Resources */,
+				58DB984D17D6A9BF0057F232 /* Icon-60x60@2x.png in Resources */,
 				585D93F017D542DA00BBE063 /* BO.png in Resources */,
 				585D94C817D542DA00BBE063 /* YE.png in Resources */,
 				585D945717D542DA00BBE063 /* LS.png in Resources */,
