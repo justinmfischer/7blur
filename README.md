@@ -3,7 +3,7 @@ Note : ...
 ````
 
 ## Overview
-IOS 7 introduces a new efficient snapshot API. The 7blur project builds apron these frameworks to produce control center and notification center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 is no longer under developer NDA. 7blur can be used free and improved by the community.
+![7blur](http://funtouchapps.com/apps/drink-in-my-hand/2.0/images/misc/Icon-framed-60x60.png) IOS 7 introduces a new efficient snapshot API. The 7blur project builds apron these frameworks to produce control center and notification center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 is no longer under developer NDA. 7blur can be used free and improved by the community.
 
 7blur supports both two styles of blur, two styles of positioning and many blur color components.
 
