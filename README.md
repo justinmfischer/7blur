@@ -3,7 +3,7 @@ Note : ...
 ````
 
 ## Overview
-![7blur](http://funtouchapps.com/apps/drink-in-my-hand/2.0/images/misc/Icon-framed-60x60.png) IOS 7 introduces a new efficient snapshot API. The 7blur project builds apron these frameworks to produce Control Center and Notification Center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 is no longer under developer NDA. 7blur can be used free and improved by the community.
+![7blur](http://www.funtouchapps.com/github/7blur/images/Icon-60x60.png) IOS 7 introduces a new efficient snapshot API. The 7blur project builds apron these frameworks to produce Control Center and Notification Center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 is no longer under developer NDA. 7blur can be used free and improved by the community.
 
 7blur supports both two styles of blur, two styles of positioning and many blur color components.
 
@@ -54,6 +54,8 @@ BLRView.h
 ````
 
 ## Code : Sample Project
+![Sample Project](http://www.funtouchapps.com/github/7blur/images/project-home.png)
+
 The sample Xcode project contains (3) common iOS 7 use cases.
 
 ## 1. Live real time blur
@@ -84,21 +86,30 @@ code
 
 7blur is efficient for static blurs and live or real time blur perform averagely. One of the intentions about opening this project up to the community is to improve this. Before making these improvements lets discuss how 7blur works.
 
-First (1) 7blur takes a snapshot using the new iOS 7 UIView (snapshotting) category ```Objective-C drawViewHierarchyInRect:rect````. Apple in WWDC 2013 (session 226) mentioned that this is the preferred method for graphical effects and performs very fast (86ms). Pending updates are discarded for performance and live snapshots.
-* Original - 320x568 (retina)
+First **(1)** 7blur takes a snapshot using the new iOS 7 UIView (snapshotting) category -drawViewHierarchyInRect:afterScreenUpdates:. Apple in WWDC 2013 (session 226) mentioned that this is the preferred method for graphical effects and performs very fast (86ms). Pending updates are discarded for performance and live snapshots.
 
-Second (2) 7blur grabs the new snapshot image from the graphics context at x1 point scale and crops the background snapshot from the BLRView frame attributes. The sample project has a BLRView with the following dimensions 320x200.
+![...](http://www.funtouchapps.com/github/7blur/images/project-original.png)
+Original - 320x568
 
-* Cropped - 320x200
+Second **(2)** 7blur grabs the new snapshot image from the graphics context at x1 point scale and crops the background snapshot from the BLRView frame attributes. The sample project has a BLRView with the following dimensions 320x200.
 
-Third (3) the cropped snapshot is re-sized down by a scale factor of x4.  
-* Re-sized - 80x50
+![...](http://www.funtouchapps.com/github/7blur/images/project-cropped.png)
+Cropped - 320x200
 
-Forth (4) the scaled down image is applied the blur effect using Apple’s UIImage+LightEffects UIImage categories. While this is not the most efficient method of producing the blur effect it produces results similar to Apple’s Control and Notification Centers. This operation is improved using the smaller image size from the previous step.
-* Blur applied - 80x50
+Third **(3)** the cropped snapshot is re-sized down by a scale factor of x4.
 
-Lastly (5) the blurred snapshot is assigned to the backgroundImage property of BLRView and the default contentmode will scale it backup and retain the aspect ratio.
-* Final - 320x568 (retina)
+![...](http://www.funtouchapps.com/github/7blur/images/project-re-sized.png)
+Re-sized - 80x50
+
+Forth **(4)** the scaled down image is applied the blur effect using Apple’s UIImage+ImageEffects UIImage categories. While this is not the most efficient method of producing the blur effect it produces results similar to Apple’s Control and Notification Centers. This operation is improved using the smaller image size from the previous step.
+
+![...](http://www.funtouchapps.com/github/7blur/images/project-blurred.png)
+Blur applied - 80x50
+
+Lastly **(5)** the blurred snapshot is assigned to the backgroundImage property of BLRView and the default contentMode will scale it back up and retain the aspect ratio.
+
+![...](http://www.funtouchapps.com/github/7blur/images/project-final.png)
+Final - 320x568
 
 ### Threading
 
