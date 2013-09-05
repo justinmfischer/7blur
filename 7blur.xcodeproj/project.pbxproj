@@ -306,6 +306,7 @@
 		58400E0E17CEAADB0083EEB9 /* BLRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BLRView.xib; sourceTree = "<group>"; };
 		58400E1017CEAADB0083EEB9 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		58400E1117CEAADB0083EEB9 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		584D459E17D84CEC0025930E /* Icon-32x32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-32x32@2x.png"; sourceTree = "<group>"; };
 		585D90DC17D5314E00BBE063 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		585D90DD17D5314E00BBE063 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		585D90DE17D5314E00BBE063 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -916,8 +917,9 @@
 		58817A5617CE55C90099DE2A /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				58DB984B17D6A9BF0057F232 /* Icon-60x60@2x.png */,
 				58D1E83B17D4F13F00617ED8 /* Eadweard-Muybridge */,
+				58DB984B17D6A9BF0057F232 /* Icon-60x60@2x.png */,
+				584D459E17D84CEC0025930E /* Icon-32x32@2x.png */,
 				58817A5717CE55C90099DE2A /* Down-30x30.png */,
 				58817A5817CE55C90099DE2A /* Down-30x30@2x.png */,
 				58817A5917CE55C90099DE2A /* Up-30x30.png */,

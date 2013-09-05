@@ -39,7 +39,7 @@
 -(void) bindAnimation {
     self.imageView.animationImages = [self imagesForAnimation];
 
-    self.imageView.animationDuration = 3;
+    self.imageView.animationDuration = 1.2f;
     self.imageView.animationRepeatCount = 0;
     
     [self.imageView startAnimating];

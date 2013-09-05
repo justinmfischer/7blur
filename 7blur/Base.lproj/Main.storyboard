@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - 7blur-->
+        <!--Table View Controller-->
         <scene sceneID="hUM-gt-UGs">
             <objects>
                 <tableViewController id="t97-Zc-EwL" sceneMemberID="viewController">
@@ -100,8 +100,26 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="7blur" id="FaS-zi-xsf">
+                    <navigationItem key="navigationItem" id="FaS-zi-xsf">
+                        <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="Home" id="66f-V5-ota"/>
+                        <view key="titleView" contentMode="scaleToFill" id="dob-Jv-uMm">
+                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Icon-32x32" translatesAutoresizingMaskIntoConstraints="NO" id="Mol-Th-CwQ">
+                                    <rect key="frame" x="6" y="1" width="32" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRw-y8-kPJ">
+                                    <rect key="frame" x="43" y="6" width="60" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
+                            </subviews>
+                        </view>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="blk-ng-cfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -298,6 +316,7 @@
     </scenes>
     <resources>
         <image name="Down-30x30.png" width="30" height="30"/>
+        <image name="Icon-32x32" width="32" height="32"/>
         <image name="sallie-gardner-300x200-01.png" width="300" height="200"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
