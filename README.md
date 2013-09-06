@@ -1,3 +1,4 @@
+
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-overview.gif)
 
 ```HTML
