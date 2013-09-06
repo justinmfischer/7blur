@@ -42,7 +42,6 @@ static CountryManager *sharedManager = nil;
     for (NSString *code in self.countryCodes) {
         [self.countryNames addObject:[self.countryDictionary objectForKey:code]];
     }
-
 }
 
 @end

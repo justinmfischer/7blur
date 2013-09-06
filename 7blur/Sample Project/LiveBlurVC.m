@@ -18,13 +18,16 @@
 
 @implementation LiveBlurVC
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     
     UINib *nib = [UINib nibWithNibName:@"CountryCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CountryCell"];
     
+    //Load BLRView with UITableView as background content
     self.blrView = [BLRView load:self.tableView];
+    
+    //Add BLRView to main view
     [self.view addSubview:self.blrView];
 }
 
@@ -32,7 +35,10 @@
     switch (self.viewDirection) {
         case KShouldMoveDown: {
             
+            //Start live real time blur with .2f update interval
             [self.blrView blurWithColor:[BLRColorComponents lightEffect] updateInterval:.2f];
+            
+            //Slide down - drop down style
             [self.blrView slideDown];
             
             self.viewDirection = KShouldMoveUp;
@@ -43,6 +49,7 @@
             
         case KShouldMoveUp: {
             
+            //Slide up
             [self.blrView slideUp];
             
             self.viewDirection = KShouldMoveDown;
@@ -56,11 +63,11 @@
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView *) tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger) section {
     return [[CountryManager sharedManager].countryCodes count];
 }
 
@@ -81,7 +88,9 @@
     return cell;
 }
 
-- (void) viewWillDisappear:(BOOL)animated {
+- (void) viewWillDisappear:(BOOL) animated {
+    
+    //Remove BLRView
     [self.blrView unload];
 }
 

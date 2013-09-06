@@ -18,27 +18,31 @@
 
 @implementation StaticBlurVC
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     
     UINib *nib = [UINib nibWithNibName:@"CountryCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CountryCell"];
-        
+    
+    //Load BLRView with UITableView as background content
     self.blrView = [BLRView load:self.tableView];
+    
+    //Change UITextView text color to white
     self.blrView.textView.textColor = [UIColor whiteColor];
     
+    //Add BLRView to main view
     [self.view addSubview:self.blrView];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView *) tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger) section {
     return [[CountryManager sharedManager].countryCodes count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
     
     CountryCell *cell = nil;
     
@@ -59,15 +63,20 @@
     switch (self.viewDirection) {
         case KShouldMoveDown: {
             
+            //Stop UITableView : UIScrollView from scrolling
             [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
             
-            [UIView animateWithDuration:.20f animations:^{
+            //Add vignette
+            [UIView animateWithDuration:.2f animations:^{
                 self.blackoutView.alpha = .2f;
             } completion:^(BOOL finished) {
                 
             }];
 
+            //Static blur with dark color components
             [self.blrView blurWithColor:[BLRColorComponents darkEffect]];
+            
+            //Slide down - drop down style
             [self.blrView slideDown];
             
             self.viewDirection = KShouldMoveUp;
@@ -78,12 +87,14 @@
             
         case KShouldMoveUp: {
             
-            [UIView animateWithDuration:.50f animations:^{
-                self.blackoutView.alpha = .0f;
+            //Remove vignette
+            [UIView animateWithDuration:.5f animations:^{
+                self.blackoutView.alpha = 0;
             } completion:^(BOOL finished) {
                 
             }];
             
+            //Slide up
             [self.blrView slideUp];
             
             self.viewDirection = KShouldMoveDown;
@@ -97,7 +108,9 @@
     }
 }
 
--(void) viewWillDisappear:(BOOL)animated {
+- (void) viewWillDisappear:(BOOL) animated {
+    
+    //Remove BLRView
     [self.blrView unload];
 }
 

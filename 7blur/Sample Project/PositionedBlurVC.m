@@ -7,9 +7,6 @@
 //
 
 #import "PositionedBlurVC.h"
-#import "CountryManager.h"
-#import "Utilities.h"
-#import "CountryCell.h"
 #import "BLRView.h"
 
 @interface PositionedBlurVC ()
@@ -18,7 +15,7 @@
 
 @implementation PositionedBlurVC
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     
     self.toggleViewButton.layer.cornerRadius = 8;
@@ -26,7 +23,7 @@
     [self bindAnimation];
 }
 
--(NSArray *) imagesForAnimation {
+- (NSArray *) imagesForAnimation {
     NSMutableArray *images = [NSMutableArray array];
     
     for (int i = 1; i < 16; i++) {
@@ -36,7 +33,7 @@
     return images;
 }
 
--(void) bindAnimation {
+- (void) bindAnimation {
     self.imageView.animationImages = [self imagesForAnimation];
 
     self.imageView.animationDuration = 1.2f;
@@ -48,12 +45,20 @@
 - (IBAction) toggleView:(id) sender {
     switch (self.viewDisplayAction) {
         case KShouldPresent: {
+            
+            //Location point to place BLRView
             CGPoint point = CGPointMake(0, 200);
             
+            //Load BLRView with UIView as background content
             self.blrView = [BLRView loadWithLocation:point parent:self.backgroundView];
+            
+            //Container foreground frame updated to match BLRView (x, y, w, h)
             self.foregroundView.frame = CGRectMake(point.x, point.y, CGRectGetWidth(self.blrView.frame), CGRectGetHeight(self.blrView.frame));
             
+            //Add BLRView to foreground view
             [self.foregroundView addSubview:self.blrView];
+            
+            //Start live real time blur with .2f update interval
             [self.blrView  blurWithColor:[BLRColorComponents lightEffect] updateInterval:.2f];
             
             self.viewDisplayAction = KShouldDismiss;
@@ -63,6 +68,7 @@
             
         case KShouldDismiss: {
             
+            //Remove BLRView
             [self.blrView unload];
             
             self.viewDisplayAction = KShouldPresent;
@@ -75,7 +81,9 @@
     }
 }
 
--(void) viewWillDisappear:(BOOL)animated {
+- (void) viewWillDisappear:(BOOL) animated {
+    
+    //Remove BLRView if not done previously
     [self.blrView unload];
 }
 
