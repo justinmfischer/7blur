@@ -133,7 +133,7 @@ StaticBlurVC.m
             [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
             
             //Add vignette
-            [UIView animateWithDuration:.20f animations:^{
+            [UIView animateWithDuration:.2f animations:^{
                 self.blackoutView.alpha = .2f;
             } completion:^(BOOL finished) {
                 
@@ -151,8 +151,8 @@ StaticBlurVC.m
         case KShouldMoveUp: {
             
             //Remove vignette
-            [UIView animateWithDuration:.50f animations:^{
-                self.blackoutView.alpha = .0f;
+            [UIView animateWithDuration:.5f animations:^{
+                self.blackoutView.alpha = 0;
             } completion:^(BOOL finished) {
                 
             }];
