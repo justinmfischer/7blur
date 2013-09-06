@@ -26,7 +26,7 @@ Note : Quality shown above is low due to animated gif dithering. (3.9MB)
 By combining the attributes above one can produce many desired visual effects and human interfaces. 7blur only has a handful of API tasks and the view content can be visually edited in Interface Builder for productivity. The next section will go over the API followed by common use cases contained in the sample project. Let's get started.
 
 ## Getting Started
-7blur requires _**iOS 7**_, _**Xcode 5**_ and linking the _**Accelerate.framework**_ to help with image processing (DSP). Integration is simple and entails 3 tasks. **(1)** Loading the view and possibly sliding it into place for drop down menu style, **(2)** blurring it with color components and lastly **(3)** unloading the view to remove. The API is listed below for reference.
+7blur only requires _**iOS 7**_ and _**Xcode 5**_. Integration is simple and entails 3 tasks. **(1)** Loading the view and possibly sliding it into place for drop down menu style, **(2)** blurring it with color components and lastly **(3)** unloading the view to remove. The API is listed below for reference.
 
 ## API
 
@@ -64,21 +64,162 @@ The sample Xcode 5 project contains (3) common iOS 7 use cases.
 This is an example of the drop down menu style live real time blur. Background content is blurred in real time behind the foreground.
 
 ```Objective-C
-code
+LiveBlurVC.m
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+    ...
+    
+    //Load BLRView with UITableView as background content
+    self.blrView = [BLRView load:self.tableView];
+    
+    //Add BLRView to main view
+    [self.view addSubview:self.blrView];
+}
+
+- (IBAction) toggleViewDirection:(id) sender {
+    switch (self.viewDirection) {
+        case KShouldMoveDown: {
+            
+            //Start live real time blur with .2f update interval
+            [self.blrView blurWithColor:[BLRColorComponents lightEffect] updateInterval:.2f];
+            
+            //Slide down - drop down style
+            [self.blrView slideDown];
+            
+            ...
+        }
+            
+        case KShouldMoveUp: {
+            
+            //Slide up
+            [self.blrView slideUp];
+            
+            ...
+        }
+
+        ...
+    }
+}
+
 ````
 
 ## 2. Static blur
 Similar to the example above but this version stops the `UITableView` from scrolling, fades in a vignette and then drops down a static blurred view. Background content is blurred using a dark color behind the foreground while touch events are disable.
 
 ```Objective-C
-code
+StaticBlurVC.m
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+
+    ...
+    
+    //Load BLRView with UITableView as background content
+    self.blrView = [BLRView load:self.tableView];
+    
+    ...
+    
+    //Add BLRView to main view
+    [self.view addSubview:self.blrView];
+}
+
+- (IBAction) toggleViewDirection:(id) sender {
+    switch (self.viewDirection) {
+        case KShouldMoveDown: {
+            
+            //Stop UITableView : UIScrollView from scrolling
+            [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
+            
+            //Add vignette
+            [UIView animateWithDuration:.20f animations:^{
+                self.blackoutView.alpha = .2f;
+            } completion:^(BOOL finished) {
+                
+            }];
+
+            //Static blur with dark color components
+            [self.blrView blurWithColor:[BLRColorComponents darkEffect]];
+            
+            //Slide down - drop down style
+            [self.blrView slideDown];
+            
+            ...
+        }
+            
+        case KShouldMoveUp: {
+            
+            //Remove vignette
+            [UIView animateWithDuration:.50f animations:^{
+                self.blackoutView.alpha = .0f;
+            } completion:^(BOOL finished) {
+                
+            }];
+            
+            //Slide up
+            [self.blrView slideUp];
+            
+            ...
+        }
+        
+        ...
+    }
+}
+
 ````
 
 ## 3. Live positioned blur
 The final example differs from the previous two by supporting view positioning inside a subview.
 
 ```Objective-C
-code
+PositionedBlurVC.m
+
+- (IBAction) toggleView:(id) sender {
+    switch (self.viewDisplayAction) {
+        case KShouldPresent: {
+            
+            //Location point to place BLRView
+            CGPoint point = CGPointMake(0, 200);
+            
+            //Load BLRView with UIView as background content
+            self.blrView = [BLRView loadWithLocation:point parent:self.backgroundView];
+            
+            //Container foreground frame updated to match BLRView (x, y, w, h)
+            self.foregroundView.frame = CGRectMake(point.x, point.y, CGRectGetWidth(self.blrView.frame), CGRectGetHeight(self.blrView.frame));
+            
+            //Add BLRView to foreground view
+            [self.foregroundView addSubview:self.blrView];
+            
+            //Start live real time blur with .2f update interval
+            [self.blrView  blurWithColor:[BLRColorComponents lightEffect] updateInterval:.2f];
+            
+            ...
+        }
+            
+        case KShouldDismiss: {
+            
+            //Remove BLRView
+            [self.blrView unload];
+            
+            ...
+        }
+            
+        ...
+    }
+}
+
+````
+
+### Unloading
+All examples unload or remove BLRView from the view heirarchy.
+
+```Objective-C
+- (void) viewWillDisappear:(BOOL) animated {
+    
+    //Remove BLRView if not done previously
+    [self.blrView unload];
+}
 ````
 
 ## Interface Builder
