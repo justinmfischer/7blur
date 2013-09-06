@@ -1,7 +1,7 @@
-![Example](http://www.funtouchapps.com/github/7blur/images/7blur-overview.gif)
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-overview.gif)
 
 ```HTML
-Note : Quality shown above is low due to animated gif dithering. (3.9MB)
+Note : Quality shown above is low due to animated gif dithering. (4.4MB)
 ```
 
 ## Overview
@@ -224,6 +224,8 @@ All examples unload or remove BLRView from the view heirarchy.
 
 ## Interface Builder
 7blur can be customized for many use cases entirely visual using Interface Builder. This promotes the MVC design pattern and increases productivity.
+
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-interface-builder.gif)
 
 ## Performance and Implementation Details
 
