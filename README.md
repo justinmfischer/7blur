@@ -13,7 +13,7 @@ Note : Quality shown above is low due to animated gif dithering. (4.4MB)
  * Live real time blur
  * Static blur
 
-* **Support positioning**
+* **Supported positioning**
  * Drop down menu style
  * Fixed position
 
@@ -56,7 +56,7 @@ BLRView.h
 ````
 
 ## Code : Sample Project
-![Sample Project](http://www.funtouchapps.com/github/7blur/images/7blur-home.png)
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-home.png)
 
 The sample Xcode 5 project contains (3) common iOS 7 use cases.
 
@@ -233,35 +233,35 @@ All examples unload or remove BLRView from the view heirarchy.
 
 First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (snapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and performs very fast (86ms). Pending updates are discarded for performance and live snapshots.
 
-![](http://www.funtouchapps.com/github/7blur/images/7blur-1.png)
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-1.png)
 
 Original - 320x568
 
 Second **(2)** 7blur grabs the new snapshot image from the graphics context at x1 point scale and crops the background snapshot from the `BLRView` frame attributes. The sample project has a `BLRView` with the following dimensions 320x200.
 
-![](http://www.funtouchapps.com/github/7blur/images/7blur-2.png)
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-2.png)
 
 Cropped - 320x200
 
 Third **(3)** the cropped snapshot is re-sized down by a scale factor of x4.
 
-![](http://www.funtouchapps.com/github/7blur/images/7blur-3.png)
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-3.png)
 
 Re-sized - 80x50
 
 Forth **(4)** the scaled down image is applied the blur effect using Apple’s `UIImage+ImageEffects` `UIImage` categories. While this is not the most efficient method of producing the blur effect it produces results similar to Apple’s Control and Notification Centers. This operation is improved using the smaller image size from the previous step.
 
-![](http://www.funtouchapps.com/github/7blur/images/7blur-4a.png)
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-4a.png)
 
 Blur applied - 80x50
 
-![](http://www.funtouchapps.com/github/7blur/images/7blur-4b.png)
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-4b.png)
 
 Blur scaled up by UIImageView contentMode - 320x200
 
 Lastly **(5)** the blurred snapshot is assigned to the `backgroundImageView` property of `BLRView` and the default `contentMode` will scale it back up and retain the aspect ratio.
 
-![](http://www.funtouchapps.com/github/7blur/images/7blur-5.png)
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-5.png)
 
 Final - 320x568
 
@@ -271,7 +271,7 @@ The two most expensive operations include cropping and re-sizing the background 
 
 ### What about Apple?
 
-Apple’s live burs in the status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. For example, the live real time sample project incurs resources even when the background content has not changed. Apple does not have to pay this tax.
+Apple’s live burs in the status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. For example, the live real time sample project incurs resources even when the background content has not changed or invalidated. Apple does not have to pay this tax.
 
 In addition the blur effect is implemented with hardware linear texture filtering. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
 
