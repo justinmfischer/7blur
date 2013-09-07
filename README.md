@@ -1,7 +1,7 @@
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-overview.gif)
 
 ```HTML
-Note : Quality shown above is low due to animated gif dithering. (4.4MB)
+Sample project animated .gif (4.4MB)
 ```
 
 ## Overview
@@ -58,7 +58,7 @@ BLRView.h
 ## Code : Sample Project
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-home.png)
 
-The sample Xcode 5 project contains (3) common iOS 7 use cases.
+The sample Xcode 5 project contains **(3)** common iOS 7 use cases.
 
 ## 1. Live real time blur
 This is an example of the drop down menu style live real time blur. Background content is blurred in real time behind the foreground.
@@ -212,7 +212,7 @@ PositionedBlurVC.m
 ````
 
 ### Unloading
-All examples unload or remove BLRView from the view heirarchy.
+All examples unload or remove `BLRView` from the view heirarchy.
 
 ```Objective-C
 - (void) viewWillDisappear:(BOOL) animated {
@@ -223,7 +223,7 @@ All examples unload or remove BLRView from the view heirarchy.
 ````
 
 ## Interface Builder
-7blur can be customized for many use cases entirely visual using Interface Builder. This promotes the MVC design pattern and increases productivity.
+7blur can be customized for many use cases entirely visually using Interface Builder. This promotes the MVC design pattern and increases productivity.
 
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-interfacebuilder.gif)
 
@@ -231,7 +231,11 @@ All examples unload or remove BLRView from the view heirarchy.
 
 7blur is efficient for static blurs and live or real time blur perform averagely. One of the intentions about opening this project up to the community is to improve this. Before making these improvements lets discuss how 7blur works.
 
-First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (snapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and performs very fast (86ms). Pending updates are discarded for performance and live snapshots.
+First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (UISnapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and performs very fast (56ms). API renamed in seed 2.
+
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-WWDC-226.png)
+
+Pending screen updates are discarded for performance and live snapshots.
 
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-1.png)
 
@@ -271,9 +275,9 @@ The two most expensive operations include cropping and re-sizing the background 
 
 ### What about Apple?
 
-Apple’s live burs in the status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. For example, the live real time sample project incurs resources even when the background content has not changed or invalidated. Apple does not have to pay this tax.
+Apple’s live burs in the Control Center, Notification Center, status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. For example, the live real time sample project incurs resources even when the background content has not changed or been invalidated. Apple does not have to pay this tax.
 
-In addition the blur effect is implemented with hardware linear texture filtering. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
+In addition Apple's blur effect is implemented with GPU hardware [linear/bilinear texture filtering](http://en.wikipedia.org/wiki/Bilinear_filtering). Even using the _**Accelerate.framework**_ vImage processing occurs at the CPU and not the GPU. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
 
 ## History
 * Initial private (NDA) release : _8/28/2013_
