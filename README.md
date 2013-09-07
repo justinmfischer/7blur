@@ -225,7 +225,7 @@ All examples unload or remove BLRView from the view heirarchy.
 ## Interface Builder
 7blur can be customized for many use cases entirely visual using Interface Builder. This promotes the MVC design pattern and increases productivity.
 
-![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-interface-builder.gif)
+![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-interfacebuilder.gif)
 
 ## Performance and Implementation Details
 
