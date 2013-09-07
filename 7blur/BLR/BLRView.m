@@ -15,7 +15,7 @@
 
 @implementation BLRView
 
--(id) initWithCoder:(NSCoder *)aDecoder {
+- (id) initWithCoder:(NSCoder *) aDecoder {
     self = [super initWithCoder:aDecoder];
     
     if (self) {
@@ -47,7 +47,7 @@
     return blur;
 }
 
--(void) awakeFromNib {
+- (void) awakeFromNib {
     self.gripBarView.layer.cornerRadius = 6;
 }
 

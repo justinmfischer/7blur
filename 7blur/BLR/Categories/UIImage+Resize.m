@@ -126,7 +126,7 @@
                                                8,
                                                0,
                                                colorSpace,
-                                               kCGImageAlphaPremultipliedLast );
+                                               kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(colorSpace);
 	
     // Rotate and/or flip the image if required by its orientation

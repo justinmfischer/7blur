@@ -10,7 +10,6 @@
 #import "BLRView.h"
 
 @interface PositionedBlurVC ()
-
 @end
 
 @implementation PositionedBlurVC

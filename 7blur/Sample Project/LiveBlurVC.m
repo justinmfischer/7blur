@@ -13,7 +13,6 @@
 #import "BLRView.h"
 
 @interface LiveBlurVC ()
-
 @end
 
 @implementation LiveBlurVC

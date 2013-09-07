@@ -25,13 +25,25 @@ typedef enum {
 @property(nonatomic, strong) IBOutlet UIView *gripBarView;
 @property(nonatomic, strong) dispatch_source_t timer;
 
+//Drop down menu style
 + (BLRView *) load:(UIView *) view;
+
+//Fixed position style
 + (BLRView *) loadWithLocation:(CGPoint) point parent:(UIView *) view;
 
+//Remove
 - (void) unload;
+
+//Down
 - (void) slideDown;
+
+//Up
 - (void) slideUp;
+
+//Static blur
 - (void) blurWithColor:(BLRColorComponents *) components;
+
+//Live real time blur
 - (void) blurWithColor:(BLRColorComponents *) components updateInterval:(float) interval;
 
 @end

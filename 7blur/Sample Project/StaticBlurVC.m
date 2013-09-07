@@ -13,7 +13,6 @@
 #import "BLRView.h"
 
 @interface StaticBlurVC ()
-
 @end
 
 @implementation StaticBlurVC

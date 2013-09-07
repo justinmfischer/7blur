@@ -32,7 +32,7 @@ static CountryManager *sharedManager = nil;
 	return self;
 }
 
--(void) load {
+- (void) load {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Countries" ofType:@"plist"];
     self.countryDictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
     

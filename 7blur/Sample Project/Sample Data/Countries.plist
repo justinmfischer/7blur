@@ -150,8 +150,6 @@
 	<string>Faroe Islands</string>
 	<key>FR</key>
 	<string>France</string>
-	<key>FX</key>
-	<string>France, Metropolitan</string>
 	<key>GA</key>
 	<string>Gabon</string>
 	<key>GB</key>
@@ -332,8 +330,6 @@
 	<string>Nigeria</string>
 	<key>NI</key>
 	<string>Nicaragua</string>
-	<key>NL</key>
-	<string>Netherlands</string>
 	<key>NO</key>
 	<string>Norway</string>
 	<key>NP</key>
@@ -463,9 +459,9 @@
 	<key>UG</key>
 	<string>Uganda</string>
 	<key>UM</key>
-	<string>United States Minor Outlying Islands</string>
+	<string>United States Minor Islands</string>
 	<key>US</key>
-	<string>United States (USA)</string>
+	<string>United States</string>
 	<key>UY</key>
 	<string>Uruguay</string>
 	<key>UZ</key>
