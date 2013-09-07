@@ -277,11 +277,14 @@ In addition the blur effect is implemented with hardware linear texture filterin
 
 ## History
 * Initial private (NDA) release : _8/28/2013_
-* Initial public release : _9/10/2013_
+* Initial public release 1.0.0 : _9/10/2013_
 
 ## Copyright and Software Licenses
 * UIImage Alpha, Resize, RoundedCorner Category Methods : _Trevor Harmon_
 * UIImage Image Effects Category Methods : _Apple, Inc._
+* Eadweard Muybridge "Sallie Gardner at a Gallop" : _Palo Alto, CA 1878_
+* Royalty Free F L A G S : Naaty Design
+ * [http://www.content-pack.com/category/freebies/world-flags/](http://www.content-pack.com/category/freebies/world-flags/)
 
 The MIT License (MIT)
 
