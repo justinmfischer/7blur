@@ -58,7 +58,7 @@ BLRView.h
 ## Code : Sample Project
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-home.png)
 
-The sample Xcode 5 project contains **(3)** common iOS 7 use cases.
+The sample Xcode 5 project contains **(3)** common iOS 7 use cases and supports in-call status bar, 4" (iPhone 5S/5) and 3.5" (iPhone 4S, 4) retina devices.
 
 ## 1. Live real time blur
 This is an example of the drop down menu style live real time blur. Background content is blurred in real time behind the foreground.
