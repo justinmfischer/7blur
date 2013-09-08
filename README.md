@@ -261,7 +261,7 @@ Blur applied - 80x50
 
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-4b.png)
 
-Blur scaled up by UIImageView contentMode - 320x200
+Blur scaled up by UIImageView default contentMode - 320x200
 
 Lastly **(5)** the blurred snapshot is assigned to the `backgroundImageView` property of `BLRView` and the default `contentMode` will scale it back up and retain the aspect ratio.
 
@@ -277,7 +277,7 @@ The two most expensive operations include cropping and re-sizing the background 
 
 Apple’s live burs in the Control Center, Notification Center, status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. For example, the live real time sample project incurs resources even when the background content has not changed or been invalidated. Apple does not have to pay this tax.
 
-In addition Apple's blur effect is implemented with GPU hardware [linear/bilinear texture filtering](http://en.wikipedia.org/wiki/Bilinear_filtering). Even using the _**Accelerate.framework**_ vImage processing occurs at the CPU and not the GPU. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
+Additionly, Apple's blur effect is implemented with GPU hardware [linear/bilinear texture filtering](http://en.wikipedia.org/wiki/Bilinear_filtering). Even using the _**Accelerate.framework**_ vImage processing occurs at the CPU and not the GPU. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
 
 ## History
 * Initial private (NDA) release : _8/28/2013_
