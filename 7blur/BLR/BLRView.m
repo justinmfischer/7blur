@@ -10,6 +10,8 @@
 #import "UIImage+ImageEffects.h"
 #import "UIImage+Resize.h"
 
+#define scaleDownFactor 4
+
 @interface BLRView ()
 @end
 
@@ -74,9 +76,7 @@
     
         snapshot = [snapshot croppedImage:CGRectMake(self.location.x, self.location.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
         
-        const int scaleFactor = 4;
-        
-        snapshot = [snapshot resizedImage:CGSizeMake(CGRectGetWidth(self.frame) / scaleFactor, CGRectGetHeight(self.frame) / scaleFactor) interpolationQuality:kCGInterpolationLow];
+        snapshot = [snapshot resizedImage:CGSizeMake(CGRectGetWidth(self.frame) / scaleDownFactor, CGRectGetHeight(self.frame) / scaleDownFactor) interpolationQuality:kCGInterpolationLow];
         
         snapshot = [snapshot applyBlurWithRadius:self.colorComponents.radius tintColor:self.colorComponents.tintColor saturationDeltaFactor:self.colorComponents.saturationDeltaFactor maskImage:self.colorComponents.maskImage];
         

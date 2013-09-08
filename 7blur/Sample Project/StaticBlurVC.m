@@ -65,7 +65,7 @@
             //Stop UITableView : UIScrollView from scrolling
             [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
             
-            //Add vignette
+            //Show vignette
             [UIView animateWithDuration:.2f animations:^{
                 self.blackoutView.alpha = .2f;
             } completion:^(BOOL finished) {
@@ -86,7 +86,7 @@
             
         case KShouldMoveUp: {
             
-            //Remove vignette
+            //Hide vignette
             [UIView animateWithDuration:.5f animations:^{
                 self.blackoutView.alpha = 0;
             } completion:^(BOOL finished) {
