@@ -3,6 +3,12 @@
  Abstract: This is a category of UIImage that adds methods to apply blur and tint effects to an image. This is the code you’ll want to look out to find out how to use vImage to efficiently calculate a blur.
   Version: 1.0
  
+ Version: 1.1
+ Created by JUSTIN M FISCHER on 9/02/13.
+ Copyright (c) 2013 Justin M Fischer. All rights reserved.
+ 
+ Abstract: This category crops and scales image efficiently using vImage prior to applying blur.
+ 
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
  terms, and your use, installation, modification or redistribution of
@@ -42,7 +48,6 @@
  POSSIBILITY OF SUCH DAMAGE.
  
  Copyright (C) 2013 Apple Inc. All Rights Reserved.
- 
  
  Copyright © 2013 Apple Inc. All rights reserved.
  WWDC 2013 License
@@ -91,17 +96,15 @@
  
  EA1002
  5/3/2013
+ 
+ JMF
+ 9/2/2013
  */
 
 #import <UIKit/UIKit.h>
 
 @interface UIImage (ImageEffects)
 
-- (UIImage *)applyLightEffect;
-- (UIImage *)applyExtraLightEffect;
-- (UIImage *)applyDarkEffect;
-- (UIImage *)applyTintEffectWithColor:(UIColor *)tintColor;
-
-- (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
+- (UIImage *)applyBlurWithCrop:(CGRect) bounds resize:(CGSize) size blurRadius:(CGFloat) blurRadius tintColor:(UIColor *) tintColor saturationDeltaFactor:(CGFloat) saturationDeltaFactor maskImage:(UIImage *) maskImage;
 
 @end

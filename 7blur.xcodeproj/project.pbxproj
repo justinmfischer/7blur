@@ -10,9 +10,6 @@
 		58400E1217CEAADB0083EEB9 /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58400E0D17CEAADB0083EEB9 /* BLRView.m */; };
 		58400E1317CEAADB0083EEB9 /* BLRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58400E0E17CEAADB0083EEB9 /* BLRView.xib */; };
 		58400E1417CEAADB0083EEB9 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 58400E1117CEAADB0083EEB9 /* UIImage+ImageEffects.m */; };
-		585D90E217D5314E00BBE063 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 585D90DD17D5314E00BBE063 /* UIImage+Alpha.m */; };
-		585D90E317D5314E00BBE063 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 585D90DF17D5314E00BBE063 /* UIImage+Resize.m */; };
-		585D90E417D5314E00BBE063 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 585D90E117D5314E00BBE063 /* UIImage+RoundedCorner.m */; };
 		585D93D417D542DA00BBE063 /* AD.png in Resources */ = {isa = PBXBuildFile; fileRef = 585D92DB17D542D900BBE063 /* AD.png */; };
 		585D93D517D542DA00BBE063 /* AE.png in Resources */ = {isa = PBXBuildFile; fileRef = 585D92DC17D542D900BBE063 /* AE.png */; };
 		585D93D617D542DA00BBE063 /* AF.png in Resources */ = {isa = PBXBuildFile; fileRef = 585D92DD17D542D900BBE063 /* AF.png */; };
@@ -301,12 +298,6 @@
 		58400E0E17CEAADB0083EEB9 /* BLRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BLRView.xib; sourceTree = "<group>"; };
 		58400E1017CEAADB0083EEB9 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		58400E1117CEAADB0083EEB9 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		585D90DC17D5314E00BBE063 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
-		585D90DD17D5314E00BBE063 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
-		585D90DE17D5314E00BBE063 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
-		585D90DF17D5314E00BBE063 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
-		585D90E017D5314E00BBE063 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
-		585D90E117D5314E00BBE063 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		585D92DB17D542D900BBE063 /* AD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AD.png; sourceTree = "<group>"; };
 		585D92DC17D542D900BBE063 /* AE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AE.png; sourceTree = "<group>"; };
 		585D92DD17D542D900BBE063 /* AF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AF.png; sourceTree = "<group>"; };
@@ -627,12 +618,6 @@
 		58400E0F17CEAADB0083EEB9 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				585D90DC17D5314E00BBE063 /* UIImage+Alpha.h */,
-				585D90DD17D5314E00BBE063 /* UIImage+Alpha.m */,
-				585D90DE17D5314E00BBE063 /* UIImage+Resize.h */,
-				585D90DF17D5314E00BBE063 /* UIImage+Resize.m */,
-				585D90E017D5314E00BBE063 /* UIImage+RoundedCorner.h */,
-				585D90E117D5314E00BBE063 /* UIImage+RoundedCorner.m */,
 				58400E1017CEAADB0083EEB9 /* UIImage+ImageEffects.h */,
 				58400E1117CEAADB0083EEB9 /* UIImage+ImageEffects.m */,
 			);
@@ -1364,16 +1349,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				58AB2E4117CE4BA300576D37 /* StaticBlurVC.m in Sources */,
-				585D90E417D5314E00BBE063 /* UIImage+RoundedCorner.m in Sources */,
 				58400E1217CEAADB0083EEB9 /* BLRView.m in Sources */,
 				5873648E17CEBDB900128CFB /* CountryManager.m in Sources */,
 				58D1E85C17D4F36500617ED8 /* PositionedBlurVC.m in Sources */,
 				58400E1417CEAADB0083EEB9 /* UIImage+ImageEffects.m in Sources */,
 				58BAEF1317CECCFA0028405E /* CountryCell.m in Sources */,
 				58AB2E3E17CE4B8900576D37 /* LiveBlurVC.m in Sources */,
-				585D90E217D5314E00BBE063 /* UIImage+Alpha.m in Sources */,
 				58AB2E1017CE491100576D37 /* AppDelegate.m in Sources */,
-				585D90E317D5314E00BBE063 /* UIImage+Resize.m in Sources */,
 				58AB2E0C17CE491100576D37 /* main.m in Sources */,
 				58817A6617CE59820099DE2A /* Utilities.m in Sources */,
 			);

@@ -15,8 +15,8 @@ typedef enum {
 
 @class BLRColorComponents;
 
-///
 /// A UIView subclass that supports live real time and static blurs. See https://github.com/justinmfischer/7blur
+///
 @interface BLRView : UIView
 
 @property(nonatomic, weak) UIView *parent;
