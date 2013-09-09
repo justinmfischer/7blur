@@ -5,7 +5,7 @@ Sample project .gif (4.4MB)
 ```
 
 ## Overview
-![7blur](http://www.funtouchapps.com/github/7blur/images/Icon-60x60.png) IOS 7 introduces a new efficient snapshot API. The 7blur project builds on these frameworks to produce Control Center and Notification Center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 is no longer under developer NDA. 7blur can be used free and improved by the community.
+![7blur](http://www.funtouchapps.com/github/7blur/images/Icon-60x60.png) IOS 7 introduces a new efficient snapshot API. The 7blur project builds on these frameworks to produce Control Center and Notification Center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 has reached GM status and is no longer under developer NDA. 7blur can be used free and improved by the community.
 
 7blur supports both two styles of blur, two styles of positioning and many blur color components.
 
@@ -23,10 +23,10 @@ Sample project .gif (4.4MB)
  * Saturation Delta
  * Image Mask
 
-By combining the attributes above one can produce many desired visual effects and human interfaces. 7blur only has a handful of API tasks and the view content can be visually edited in Interface Builder for productivity. The next section will go over the API followed by common use cases contained in the sample project. Let's get started.
+By combining the attributes above one can produce many desired visual effects and human interfaces. 7blur only has a handful of API tasks and the view content can be visually edited in Interface Builder for productivity. The next section will go over the API followed by common use cases contained in the sample project. Let's get started!
 
 ## Getting Started
-7blur only requires _**iOS 7**_ and _**Xcode 5**_. Integration is simple and entails 3 tasks. **(1)** Loading the view and possibly sliding it into place for drop down menu style, **(2)** blurring it with color components and lastly **(3)** unloading the view to remove. The API is listed below for reference.
+7blur only requires _**iOS 7**_ and _**Xcode 5**_. Integration is simple and entails 3 tasks. **(1)** Loading the view and possibly sliding it into place for drop down menu style, **(2)** blurring it with color components and lastly **(3)** unloading the view to remove. The API is listed below for reference and the Xcode 5 project ￼￼contains structured comments (Doxygen).
 
 ## API
 
