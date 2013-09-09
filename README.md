@@ -20,8 +20,8 @@ Sample project .gif (4.4MB)
 * **Blur Color Components**
  * Blur radius
  * Tint color
- * Saturation Delta
- * Image Mask
+ * Saturation delta factor 
+ * Mask image
 
 By combining the attributes above one can produce many desired visual effects and human interfaces. 7blur only has a handful of API tasks and the view content can be visually edited in Interface Builder for productivity. The next section will go over the API followed by common use cases contained in the sample project. Let's get started!
 
@@ -253,8 +253,12 @@ Third **(3)** the cropped snapshot is re-sized down by a scale factor of x4.
 
 Re-sized - 80x50
 
-Forth **(4)** the scaled down image is applied the blur effect using Apple’s `UIImage+ImageEffects` `UIImage` categories. While this is not the most efficient method of producing the blur effect it produces results similar to Apple’s Control and Notification Centers. This operation is improved using the smaller image size from the previous step.
+Forth **(4)** the scaled down image is applied the blur effect using a modified version of Apple’s `UIImage+ImageEffects` `UIImage` categories. The blur operation is further improved using the smaller image size from the previous step. Methods in this category are fast and include the following vImage functions from the _**Accelerate.framework**_
 
+* vImageScale_ARGB8888 **_(scale)_**
+* vImageBoxConvolve_ARGB8888  **_(blur)_**
+* vImageMatrixMultiply_ARGB8888  **_(saturation)_**
+ 
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-4a.png)
 
 Blur applied - 80x50
@@ -271,20 +275,19 @@ Final - 320x568
 
 ### Threading
 
-The two most expensive operations include cropping and re-sizing the background image. Both of these tasks are off loaded to a background global queue. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events.
+The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events.
 
 ### What about Apple?
 
 Apple’s live burs in the Control Center, Notification Center, status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. For example, the live real time sample project incurs resources even when the background content has not changed or been invalidated. Apple does not have to pay this tax.
 
-Additionly, Apple's blur effect is implemented with GPU hardware [linear/bilinear texture filtering](http://en.wikipedia.org/wiki/Bilinear_filtering). Even using the _**Accelerate.framework**_ vImage processing occurs at the CPU and not the GPU. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
+Additionally, Apple's blur effect is implemented with GPU hardware [linear/bi-linear texture filtering](http://en.wikipedia.org/wiki/Bilinear_filtering). Even using the _**Accelerate.framework**_ vImage processing is still a hybrid CPU/GPU implementation. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
 
 ## History
 * Initial private (NDA) release : _8/28/2013_
 * Initial public release 1.0.0 : _9/10/2013_
 
 ## Copyright and Software Licenses
-* UIImage Alpha, Resize, RoundedCorner Category Methods : _Trevor Harmon_
 * UIImage Image Effects Category Methods : _Apple, Inc._
 * Eadweard Muybridge "Sallie Gardner at a Gallop" : _Palo Alto, CA 1878_
 * Royalty Free F L A G S : _Naaty Design_
