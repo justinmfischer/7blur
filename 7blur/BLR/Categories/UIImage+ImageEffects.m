@@ -163,15 +163,17 @@
     
     BOOL hasBlur = blurRadius > __FLT_EPSILON__;
     BOOL hasSaturationChange = fabs(saturationDeltaFactor - 1.) > __FLT_EPSILON__;
+    
     if (hasBlur || hasSaturationChange) {
         UIGraphicsBeginImageContextWithOptions(self.size, NO, 1);
+        
         CGContextRef effectInContext = UIGraphicsGetCurrentContext();
+        
         CGContextScaleCTM(effectInContext, 1.0, -1.0);
         CGContextTranslateCTM(effectInContext, 0, -self.size.height);
         CGContextDrawImage(effectInContext, imageRect, self.CGImage);
 
         vImage_Buffer effectInBuffer;
-        
         
         effectInBuffer.data     = CGBitmapContextGetData(effectInContext);
         effectInBuffer.width    = CGBitmapContextGetWidth(effectInContext);
@@ -179,8 +181,10 @@
         effectInBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectInContext);
     
         UIGraphicsBeginImageContextWithOptions(self.size, NO, 1);
+        
         CGContextRef effectOutContext = UIGraphicsGetCurrentContext();
         vImage_Buffer effectOutBuffer;
+        
         effectOutBuffer.data     = CGBitmapContextGetData(effectOutContext);
         effectOutBuffer.width    = CGBitmapContextGetWidth(effectOutContext);
         effectOutBuffer.height   = CGBitmapContextGetHeight(effectOutContext);

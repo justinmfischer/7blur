@@ -9,6 +9,7 @@
 #import "BLRView.h"
 #import "UIImage+ImageEffects.h"
 #import "UIImage+Resize.h"
+#import "Utilities.h"
 
 #define scaleDownFactor 4
 
@@ -66,7 +67,15 @@
 - (void) blurBackground {
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.parent.frame), CGRectGetHeight(self.parent.frame)), NO, 1);
     
+    Stopwatch *stopwatch1 = [[Stopwatch alloc] initWithName:@"snapshot"];
+    Stopwatch *stopwatch2 = [[Stopwatch alloc] initWithName:@"crop"];
+    Stopwatch *stopwatch3 = [[Stopwatch alloc] initWithName:@"re-size"];
+    Stopwatch *stopwatch4 = [[Stopwatch alloc] initWithName:@"blur"];
+    
+    [stopwatch1 start];
+    //Snapshot finished in 0.051982 seconds.
     [self.parent drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.parent.frame), CGRectGetHeight(self.parent.frame)) afterScreenUpdates:NO];
+    [stopwatch1 stop];
 
     __block UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -74,14 +83,28 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
+        [stopwatch2 start];
+        //Crop finished in 0.000037 seconds.
         snapshot = [snapshot croppedImage:CGRectMake(self.location.x, self.location.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+        [stopwatch2 stop];
         
+        [stopwatch3 start];
+        //Re-size finished in 0.000717 seconds.
         snapshot = [snapshot resizedImage:CGSizeMake(CGRectGetWidth(self.frame) / scaleDownFactor, CGRectGetHeight(self.frame) / scaleDownFactor) interpolationQuality:kCGInterpolationLow];
+        [stopwatch3 stop];
         
+        [stopwatch4 start];
+        //Blur finished in 0.001360 seconds.
         snapshot = [snapshot applyBlurWithRadius:self.colorComponents.radius tintColor:self.colorComponents.tintColor saturationDeltaFactor:self.colorComponents.saturationDeltaFactor maskImage:self.colorComponents.maskImage];
+        [stopwatch4 stop];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.backgroundImageView.image = snapshot;
+            
+            [stopwatch1 statistics];
+            [stopwatch2 statistics];
+            [stopwatch3 statistics];
+            [stopwatch4 statistics];
         });
     });
 }

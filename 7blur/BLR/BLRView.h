@@ -14,6 +14,9 @@ typedef enum {
 } BlurType;
 
 @class BLRColorComponents;
+
+///
+/// A UIView subclass that supports live real time and static blurs. See https://github.com/justinmfischer/7blur
 @interface BLRView : UIView
 
 @property(nonatomic, weak) UIView *parent;
@@ -25,25 +28,50 @@ typedef enum {
 @property(nonatomic, strong) IBOutlet UIView *gripBarView;
 @property(nonatomic, strong) dispatch_source_t timer;
 
-//Drop down menu style
+/// Drop down menu style.
+///
+/// @param UIView as background content
+/// @return A newly created BLRView instance
 + (BLRView *) load:(UIView *) view;
 
-//Fixed position style
+///Fixed position style.
+///
+/// @param Location CGPoint point
+/// @param Parent UIView as background content
+/// @return A newly created BLRView instance
 + (BLRView *) loadWithLocation:(CGPoint) point parent:(UIView *) view;
 
-//Remove
+///Remove.
+///
+/// @brief Invalidates timers and removes view from superview.
+/// @return void
 - (void) unload;
 
-//Down
+///Down.
+///
+/// @brief Slides down drop down menu into place.
+/// @return void
 - (void) slideDown;
 
-//Up
+///Up.
+///
+/// @brief Slides up drop down menu.
+/// @return void
 - (void) slideUp;
 
-//Static blur
+///Static blur.
+///
+/// @brief Blur content with static blur.
+/// @param BLRColorComponents as blur components
+/// @return void
 - (void) blurWithColor:(BLRColorComponents *) components;
 
-//Live real time blur
+//Live real time blur.
+///
+/// @brief Start live real time blur with update interval in seconds.
+/// @param BLRColorComponents as blur components
+/// @param Update interval float as interval for background content updates
+/// @return void
 - (void) blurWithColor:(BLRColorComponents *) components updateInterval:(float) interval;
 
 @end
