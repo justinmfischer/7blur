@@ -279,7 +279,7 @@ The snapshot must occur on the main thread while the crop, re-size and blur oper
 
 ### What about Apple?
 
-Apple’s live burs in the Control Center, Notification Center, status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. For example, the live real time sample project incurs resources even when the background content has not changed or been invalidated. Apple does not have to pay this tax.
+Apple’s live burs in the Control Center, Notification Center, status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. For example the live real time sample project incurs resources even when the background content has not changed or been invalidated. Apple does not have to pay this tax.
 
 Additionally, Apple's blur effect is implemented in hardware. Even using the _**Accelerate.framework**_ vImage processing is still a hybrid CPU/GPU implementation. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
 
