@@ -5,7 +5,7 @@ Sample project .gif (4.4MB)
 ```
 
 ## Overview
-![7blur](http://www.funtouchapps.com/github/7blur/images/Icon-60x60.png) IOS 7 introduces a new efficient snapshot API. The 7blur project builds on these frameworks to produce Control Center and Notification Center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 has reached GM status and is no longer under developer NDA. 7blur can be used free and improved by the community.
+![7blur](http://www.funtouchapps.com/github/7blur/images/Icon-60x60.png) IOS 7 introduces a new efficient snapshot API. The 7blur project builds on these frameworks to produce Control Center and Notification Center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 has reached GM status and is no longer under developer NDA. 7blur can be used freely and improved by the community.
 
 7blur supports both two styles of blur, two styles of positioning and many blur color components.
 
@@ -17,7 +17,7 @@ Sample project .gif (4.4MB)
  * Drop down menu style
  * Fixed position
 
-* **Blur Color Components**
+* **Blur color components**
  * Blur radius
  * Tint color
  * Saturation delta factor 
@@ -26,7 +26,7 @@ Sample project .gif (4.4MB)
 By combining the attributes above one can produce many desired visual effects and human interfaces. 7blur only has a handful of API tasks and the view content can be visually edited in Interface Builder for productivity. The next section will go over the API followed by common use cases contained in the sample project. Let's get started!
 
 ## Getting Started
-7blur only requires _**iOS 7**_ and _**Xcode 5**_. Integration is simple and entails 3 tasks. **(1)** Loading the view and possibly sliding it into place for drop down menu style, **(2)** blurring it with color components and lastly **(3)** unloading the view to remove. The API is listed below for reference and the Xcode 5 project ￼￼contains structured comments (Doxygen).
+7blur only requires _**iOS 7**_ and _**Xcode 5**_. Integration is simple and entails 3 tasks. **(1)** Loading the `BLRView` and possibly sliding it into place for drop down menu style, **(2)** blurring it with color components and lastly **(3)** unloading the `BLRView` to remove. The API is listed below for reference and the Xcode 5 project ￼￼contains structured comments (Doxygen).
 
 ## API
 
@@ -58,7 +58,7 @@ BLRView.h
 ## Code : Sample Project
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-home.png)
 
-The sample Xcode 5 project contains **(3)** common iOS 7 use cases and supports in-call status bar, 4" (iPhone 5S/5) and 3.5" (iPhone 4S, 4) retina devices.
+The sample Xcode 5 project contains **(3)** common iOS 7 use cases and supports in-call status bar, 4" (iPhone 5S, 5C, 5) and 3.5" (iPhone 4S, 4) retina devices.
 
 ## 1. Live real time blur
 This is an example of the drop down menu style live real time blur. Background content is blurred in real time behind the foreground.
@@ -223,7 +223,7 @@ All examples unload or remove `BLRView` from the view heirarchy.
 ````
 
 ## Interface Builder
-7blur can be customized for many use cases entirely visually using Interface Builder. This promotes the MVC design pattern and increases productivity.
+7blur can be customized for many use cases and visually edited in Interface Builder for productivity. This promotes the MVC design pattern and increases productivity. One could also subclass for further reuse.
 
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-interfacebuilder.gif)
 
@@ -231,7 +231,7 @@ All examples unload or remove `BLRView` from the view heirarchy.
 
 7blur is efficient for static blurs and live or real time blur perform averagely. One of the intentions about opening this project up to the community is to improve this. Before making these improvements lets discuss how 7blur works.
 
-First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (UISnapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and performs very fast. API renamed in seed 2.
+First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (UISnapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and are fast. API renamed in seed 2 from `-snapshotView:`.
 
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-WWDC-226.png)
 
@@ -275,7 +275,7 @@ Final - 320x568
 
 ### Threading
 
-The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. These operations are very fast. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events. `CADisplayLink` in `NSRunLoopCommonModes` is another good option.
+The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. These operations are fast. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events. `CADisplayLink` in `NSRunLoopCommonModes` is another good option.
 
 ### What about Apple?
 
