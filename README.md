@@ -60,7 +60,7 @@ BLRView.h
 
 The sample Xcode 5 project contains **(3)** common iOS 7 use cases and supports in-call status bar, iPhone 4" and 3.5" retina devices.
 
-## 1. Live real time blur
+## 1. Live Real Time Blur
 This is an example of the drop down menu style live real time blur. Background content is blurred in real time behind the foreground.
 
 ```Objective-C
@@ -105,7 +105,7 @@ LiveBlurVC.m
 
 ````
 
-## 2. Static blur
+## 2. Static Blur
 Similar to the example above but this version stops the `UITableView` from scrolling, fades in a vignette and then drops down a static blurred view. Background content is blurred using a dark color behind the foreground while touch events are disable.
 
 ```Objective-C
@@ -169,7 +169,7 @@ StaticBlurVC.m
 
 ````
 
-## 3. Live positioned blur
+## 3. Live Positioned Blur
 The final example differs from the previous two by supporting view positioning inside a subview.
 
 ```Objective-C
@@ -277,7 +277,7 @@ Final - 320x568
 
 The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. These operations are fast thanks to the _**Accelerate.framework**_. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events. `CADisplayLink` in `NSRunLoopCommonModes` is another good option.
 
-### What about Apple?
+### What About Apple?
 
 Apple’s live burs in the Control Center, Notification Center, status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. The sample project incurs resources for live real time blurs even when the background content has not changed or been invalidated. Apple does not have to pay this tax.
 
