@@ -275,7 +275,7 @@ Final - 320x568
 
 ### Threading
 
-The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. These operations are very fast. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events. CADisplayLink in NSRunLoopCommonModes is another good option.
+The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. These operations are very fast. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events. `CADisplayLink` in `NSRunLoopCommonModes` is another good option.
 
 ### What about Apple?
 
