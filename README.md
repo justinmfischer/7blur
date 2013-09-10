@@ -5,7 +5,7 @@ Sample project .gif (4.4MB)
 ```
 
 ## Overview
-![7blur](http://www.funtouchapps.com/github/7blur/images/Icon-60x60.png) IOS 7 introduces a new efficient snapshot API. The 7blur project builds on these frameworks to produce Control Center and Notification Center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 has reached GM status and is no longer under developer NDA. 7blur can be used freely and improved by the community.
+![7blur](http://www.funtouchapps.com/github/7blur/images/Icon-60x60.png) IOS 7 introduces a new efficient snapshot API. The 7blur project builds on these frameworks to produce Control Center and Notification Center like blur effects enforcing the 3rd design pattern of depth for iOS 7 apps. It should be noted that iOS 7 has reached GM (11A465) status. This specific API was discussed publicly at WWDC 2013 and 7blur can be used freely and improved by the community.
 
 7blur supports both two styles of blur, two styles of positioning and many blur color components.
 
@@ -58,7 +58,7 @@ BLRView.h
 ## Code : Sample Project
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-home.png)
 
-The sample Xcode 5 project contains **(3)** common iOS 7 use cases and supports in-call status bar, 4" (iPhone 5S, 5C, 5) and 3.5" (iPhone 4S, 4) retina devices.
+The sample Xcode 5 project contains **(3)** common iOS 7 use cases and supports in-call status bar, iPhone 4" and 3.5" retina devices.
 
 ## 1. Live real time blur
 This is an example of the drop down menu style live real time blur. Background content is blurred in real time behind the foreground.
@@ -231,7 +231,7 @@ All examples unload or remove `BLRView` from the view heirarchy.
 
 7blur is efficient for static blurs and live or real time blur perform averagely. One of the intentions about opening this project up to the community is to improve this. Before making these improvements lets discuss how 7blur works.
 
-First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (UISnapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and are fast. API renamed in seed 2 from `-snapshotView:`.
+First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (UISnapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and is fast. API renamed in seed 2 from `-snapshotView:`.
 
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-WWDC-226.png)
 
