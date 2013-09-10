@@ -275,13 +275,13 @@ Final - 320x568
 
 ### Threading
 
-The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. These operations are fast. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events. `CADisplayLink` in `NSRunLoopCommonModes` is another good option.
+The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. These operations are fast thanks to the _**Accelerate.framework**_. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events. `CADisplayLink` in `NSRunLoopCommonModes` is another good option.
 
 ### What about Apple?
 
 Apple’s live burs in the Control Center, Notification Center, status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. The sample project incurs resources for live real time blurs even when the background content has not changed or been invalidated. Apple does not have to pay this tax.
 
-Additionally, Apple's blur effect is implemented in hardware. Even using the _**Accelerate.framework**_ vImage processing is still a hybrid CPU/GPU implementation. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
+Additionally, Apple's blur effects are implemented in hardware. Even using the _**Accelerate.framework**_ vImage processing is still a hybrid CPU/GPU implementation. While these limitations do exist there is room for the open source community to improve projects like 7blur. Please fork and improve.
 
 ## History
 * Initial private (NDA) release : _8/28/2013_
