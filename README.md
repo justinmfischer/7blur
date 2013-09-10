@@ -231,7 +231,7 @@ All examples unload or remove `BLRView` from the view heirarchy.
 
 7blur is efficient for static blurs and live or real time blur perform averagely. One of the intentions about opening this project up to the community is to improve this. Before making these improvements lets discuss how 7blur works.
 
-First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (UISnapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and is fast. API renamed in seed 2 from `-snapshotView:`.
+First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (UISnapshotting) category `drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and is fast. API renamed in seed 2 from `snapshotView:`.
 
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-WWDC-226.png)
 
