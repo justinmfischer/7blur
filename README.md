@@ -231,7 +231,7 @@ All examples unload or remove `BLRView` from the view heirarchy.
 
 7blur is efficient for static blurs and live or real time blur perform averagely. One of the intentions about opening this project up to the community is to improve this. Before making these improvements lets discuss how 7blur works.
 
-First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (UISnapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and performs very fast (56ms). API renamed in seed 2.
+First **(1)** 7blur takes a snapshot using the new iOS 7 `UIView` (UISnapshotting) category `-drawViewHierarchyInRect:afterScreenUpdates:`. Apple in [WWDC 2013 - Session 226](http://devstreaming.apple.com/videos/wwdc/2013/226xbx5xinmlvbdabxux9k3kt/226/226.pdf) mentioned that this is the preferred method for graphical effects and performs very fast. API renamed in seed 2.
 
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-WWDC-226.png)
 
@@ -275,11 +275,11 @@ Final - 320x568
 
 ### Threading
 
-The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events.
+The snapshot must occur on the main thread while the crop, re-size and blur operations are off loaded to a background global queue. These operations are very fast. Once complete the UI changes are synchronized on the main run loop. Low level GCD dispatch timers are used in favor of `NSTimer` for live real time blur implementation. On iOS, `NSTimer` events are suppressed during certain cocoa touch events such as `UIScrollView` scrolling as an example. By using GCD dispatch timers live blur effects can be achieved even during such events. CADisplayLink in NSRunLoopCommonModes is another good option.
 
 ### What about Apple?
 
-Apple’s live burs in the Control Center, Notification Center, status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. For example the live real time sample project incurs resources even when the background content has not changed or been invalidated. Apple does not have to pay this tax.
+Apple’s live burs in the Control Center, Notification Center, status bar, under keyboards and in other views on iOS 7 are smooth and efficient. This is because UIKit is built on top of OpenGL. Apple has private APIs that can listen for child re-drawing cycles thus eliminating the need for inefficient polling. The sample project incurs resources for live real time blurs even when the background content has not changed or been invalidated. Apple does not have to pay this tax.
 
 Additionally, Apple's blur effect is implemented in hardware. Even using the _**Accelerate.framework**_ vImage processing is still a hybrid CPU/GPU implementation. While these limitations do exist there is room for 3rd party developers to improve projects like 7blur. Please fork and improve.
 
