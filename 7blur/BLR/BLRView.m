@@ -190,9 +190,9 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
 + (BLRColorComponents *) darkEffect {
     BLRColorComponents *components = [[BLRColorComponents alloc] init];
     
-    components.radius = 6;
-    components.tintColor = [UIColor colorWithRed:.1f green:.1 blue:.1f alpha:.8f];
-    components.saturationDeltaFactor = 1.8f;
+    components.radius = 8;
+    components.tintColor = [UIColor colorWithRed:0.0f green:0.0 blue:0.0f alpha:.5f];
+    components.saturationDeltaFactor = 3.0f;
     components.maskImage = nil;
     
     return components;
