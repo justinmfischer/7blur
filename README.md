@@ -308,3 +308,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 ## Links
 * [iOS 7 UI Transition Guide](https://developer.apple.com/library/etc/redirect/WWDR/iOSUITransitionGuide)
 * [iOS Human Interface Guidelines](https://developer.apple.com/library/etc/redirect/WWDR/iOSHIG)
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/6873d2b258da92b5313614234ef26fde "githalytics.com")](http://githalytics.com/justinmfischer/7blur)
