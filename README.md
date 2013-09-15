@@ -1,3 +1,5 @@
+<meta name="google-site-verification" content="zHrZDtuqnrfU-znII0IESuTzWm_tLj3SoBZKjJ8CCXI" />
+
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-overview.gif)
 
 ```HTML
