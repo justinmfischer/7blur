@@ -20,7 +20,7 @@ Sample project .gif (4.4MB)
 * **Blur color components**
  * Blur radius
  * Tint color
- * Saturation delta factor 
+ * Saturation delta factor
  * Mask image
 
 By combining the attributes above one can produce many desired visual effects and human interfaces. 7blur only has a handful of API tasks and the view content can be visually edited in Interface Builder for productivity. The next section will go over the API followed by common use cases contained in the sample project. Let's get started!
@@ -33,20 +33,17 @@ By combining the attributes above one can produce many desired visual effects an
 ```Objective-C
 BLRView.h
 
-//Drop down menu style
-+ (BLRView *) load:(UIView *) view;
-
-//Fixed position style
-+ (BLRView *) loadWithLocation:(CGPoint) point parent:(UIView *) view;
+/// Init BLRView
+- (id) initWithFrame:(CGRect)frame andParent:(UIView *) view ;
 
 //Remove
 - (void) unload;
 
-//Down
-- (void) slideDown;
+///slide hide to position.
+- (void) hideToPosition:(CGPoint)position;
 
-//Up
-- (void) slideUp;
+///slide show to position.
+- (void) showToPosition:(CGPoint)position;
 
 //Static blur
 - (void) blurWithColor:(BLRColorComponents *) components;
@@ -68,12 +65,12 @@ LiveBlurVC.m
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    
+
     ...
-    
+
     //Load BLRView with UITableView as background content
-    self.blrView = [BLRView load:self.tableView];
-    
+    self.blrView = [[BLRView alloc] initWithFrame:CGRectMake(0, -64, 320.0, 200) andParent:self.tableView];
+
     //Add BLRView to main view
     [self.view addSubview:self.blrView];
 }
@@ -81,21 +78,21 @@ LiveBlurVC.m
 - (IBAction) toggleViewDirection:(id) sender {
     switch (self.viewDirection) {
         case KShouldMoveDown: {
-            
+
             //Start live real time blur with .2f update interval
             [self.blrView blurWithColor:[BLRColorComponents lightEffect] updateInterval:.2f];
-            
-            //Slide down - drop down style
-            [self.blrView slideDown];
-            
+
+            //Slide show
+            [self.blrView showToPosition:CGPointMake(0, 64)];
+
             ...
         }
-            
+
         case KShouldMoveUp: {
-            
-            //Slide up
-            [self.blrView slideUp];
-            
+
+            //Slide hide
+            [self.blrView hideToPosition:CGPointMake(0, -64)];
+
             ...
         }
 
@@ -115,12 +112,12 @@ StaticBlurVC.m
     [super viewDidLoad];
 
     ...
-    
+
     //Load BLRView with UITableView as background content
-    self.blrView = [BLRView load:self.tableView];
-    
+    self.blrView = [[BLRView alloc] initWithFrame:CGRectMake(0, -64, 320.0, 200) andParent:self.tableView];
+
     ...
-    
+
     //Add BLRView to main view
     [self.view addSubview:self.blrView];
 }
@@ -128,41 +125,41 @@ StaticBlurVC.m
 - (IBAction) toggleViewDirection:(id) sender {
     switch (self.viewDirection) {
         case KShouldMoveDown: {
-            
+
             //Stop UITableView : UIScrollView from scrolling
             [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
-            
+
             //Show vignette
             [UIView animateWithDuration:.2f animations:^{
                 self.blackoutView.alpha = .2f;
             } completion:^(BOOL finished) {
-                
+
             }];
 
             //Static blur with dark color components
             [self.blrView blurWithColor:[BLRColorComponents darkEffect]];
-            
-            //Slide down - drop down style
-            [self.blrView slideDown];
-            
+
+            //Slide show
+            [self.blrView showToPosition:CGPointMake(0, 64)];
+
             ...
         }
-            
+
         case KShouldMoveUp: {
-            
+
             //Hide vignette
             [UIView animateWithDuration:.5f animations:^{
                 self.blackoutView.alpha = 0;
             } completion:^(BOOL finished) {
-                
+
             }];
-            
+
             //Slide up
-            [self.blrView slideUp];
-            
+            [self.blrView hideToPosition:CGPointMake(0, -64)];
+
             ...
         }
-        
+
         ...
     }
 }
@@ -178,33 +175,33 @@ PositionedBlurVC.m
 - (IBAction) toggleView:(id) sender {
     switch (self.viewDisplayAction) {
         case KShouldPresent: {
-            
+
             //Location point to place BLRView
-            CGPoint point = CGPointMake(0, 200);
-            
+            CGPoint point = CGPointMake(0, 100);
+
             //Load BLRView with UIView as background content
-            self.blrView = [BLRView loadWithLocation:point parent:self.backgroundView];
-            
+            self.blrView = [[BLRView alloc] initWithFrame:CGRectMake(point.x, point.y, 320.0, 200) andParent:self.imageView];
+
             //Container foreground frame updated to match BLRView (x, y, w, h)
             self.foregroundView.frame = CGRectMake(point.x, point.y, CGRectGetWidth(self.blrView.frame), CGRectGetHeight(self.blrView.frame));
-            
+
             //Add BLRView to foreground view
             [self.foregroundView addSubview:self.blrView];
-            
+
             //Start live real time blur with .2f update interval
             [self.blrView  blurWithColor:[BLRColorComponents lightEffect] updateInterval:.2f];
-            
+
             ...
         }
-            
+
         case KShouldDismiss: {
-            
+
             //Remove BLRView
             [self.blrView unload];
-            
+
             ...
         }
-            
+
         ...
     }
 }
@@ -216,7 +213,7 @@ All examples unload or remove `BLRView` from the view heirarchy.
 
 ```Objective-C
 - (void) viewWillDisappear:(BOOL) animated {
-    
+
     //Remove BLRView if not done previously
     [self.blrView unload];
 }
@@ -258,7 +255,7 @@ Forth **(4)** the scaled down image is applied the blur effect using a modified 
 * vImageScale_ARGB8888 **_(scale)_**
 * vImageBoxConvolve_ARGB8888  **_(blur)_**
 * vImageMatrixMultiply_ARGB8888  **_(saturation)_**
- 
+
 ![7blur](http://www.funtouchapps.com/github/7blur/images/7blur-4a.png)
 
 Blur applied - 80x50

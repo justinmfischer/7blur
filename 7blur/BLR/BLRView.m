@@ -34,7 +34,7 @@
 @property(nonatomic, assign) CGPoint location;
 @property(nonatomic, assign) BlurType blurType;
 @property(nonatomic, strong) BLRColorComponents *colorComponents;
-@property(nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
+@property(nonatomic, strong) UIImageView *backgroundImageView;
 @property(nonatomic, strong) dispatch_source_t timer;
 
 @end
@@ -51,30 +51,17 @@
     return self;
 }
 
-+ (BLRView *) load:(UIView *) view {
-    BLRView *blur = [[[NSBundle mainBundle] loadNibNamed:@"BLRView" owner:nil options:nil] objectAtIndex:0];
+- (id) initWithFrame:(CGRect)frame andParent:(UIView *) view
+{
+    if (self = [super initWithFrame:frame])  {
+        self.parent = view;
+        self.backgroundColor = [UIColor clearColor];
+        self.backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        [self addSubview:self.backgroundImageView];
+    }
     
-    blur.parent = view;
-    blur.location = CGPointMake(0, 64);
-    
-    blur.frame = CGRectMake(blur.location.x, -(blur.frame.size.height + blur.location.y), blur.frame.size.width, blur.frame.size.height);
-    
-    return blur;
-}
-
-+ (BLRView *) loadWithLocation:(CGPoint) point parent:(UIView *) view {
-    BLRView *blur = [[[NSBundle mainBundle] loadNibNamed:@"BLRView" owner:nil options:nil] objectAtIndex:0];
-    
-    blur.parent = view;
-    blur.location = point;
-    
-    blur.frame = CGRectMake(0, 0, blur.frame.size.width, blur.frame.size.height);
-    
-    return blur;
-}
-
-- (void) awakeFromNib {
-    self.gripBarView.layer.cornerRadius = 6;
+    return self;
 }
 
 - (void) unload {
@@ -139,7 +126,7 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     return timer;
 }
 
-- (void) slideDown {
+- (void) slideUp {
     [UIView animateWithDuration:0.25f animations:^{
         
         self.frame = CGRectMake(self.location.x, self.location.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
@@ -152,7 +139,12 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     }];
 }
 
-- (void) slideUp {
+- (void) showToPosition:(CGPoint )position {
+    self.location = position;
+    [self slideUp];
+}
+
+- (void) slideDown {
     if(self.timer != nil) {
         
         dispatch_source_cancel(self.timer);
@@ -167,6 +159,11 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     } completion:^(BOOL finished) {
         
     }];
+}
+
+- (void) hideToPosition:(CGPoint)position {
+    self.location = position;
+    [self slideDown];
 }
 
 @end

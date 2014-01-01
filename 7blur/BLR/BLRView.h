@@ -37,21 +37,11 @@ typedef enum {
 ///
 @interface BLRView : UIView
 
-@property(nonatomic, strong) IBOutlet UITextView *textView;
-@property(nonatomic, strong) IBOutlet UIView *gripBarView;
-
-/// Drop down menu style.
+/// Init BLRView
 ///
 /// @param UIView as background content
 /// @return A newly created BLRView instance
-+ (BLRView *) load:(UIView *) view;
-
-///Fixed position style.
-///
-/// @param Location CGPoint point
-/// @param Parent UIView as background content
-/// @return A newly created BLRView instance
-+ (BLRView *) loadWithLocation:(CGPoint) point parent:(UIView *) view;
+- (id) initWithFrame:(CGRect)frame andParent:(UIView *) view ;
 
 ///Remove.
 ///
@@ -59,17 +49,17 @@ typedef enum {
 /// @return void
 - (void) unload;
 
-///Down.
+///slide hide to position.
 ///
-/// @brief Slides down drop down menu into place.
+/// @brief Slides down view to position.
 /// @return void
-- (void) slideDown;
+- (void) hideToPosition:(CGPoint)position;
 
-///Up.
+///slide show to position.
 ///
-/// @brief Slides up drop down menu.
+/// @brief Slides up view to position.
 /// @return void
-- (void) slideUp;
+- (void) showToPosition:(CGPoint)position;
 
 ///Static blur.
 ///
@@ -96,7 +86,6 @@ typedef enum {
 @property(nonatomic, strong) UIColor *tintColor;
 @property(nonatomic, assign) CGFloat saturationDeltaFactor;
 @property(nonatomic, strong) UIImage *maskImage;
-
 ///Light color effect.
 ///
 + (BLRColorComponents *) lightEffect;
