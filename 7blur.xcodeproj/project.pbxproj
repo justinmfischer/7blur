@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		58400E1217CEAADB0083EEB9 /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58400E0D17CEAADB0083EEB9 /* BLRView.m */; };
-		58400E1317CEAADB0083EEB9 /* BLRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58400E0E17CEAADB0083EEB9 /* BLRView.xib */; };
 		58400E1417CEAADB0083EEB9 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 58400E1117CEAADB0083EEB9 /* UIImage+ImageEffects.m */; };
 		585D93D417D542DA00BBE063 /* AD.png in Resources */ = {isa = PBXBuildFile; fileRef = 585D92DB17D542D900BBE063 /* AD.png */; };
 		585D93D517D542DA00BBE063 /* AE.png in Resources */ = {isa = PBXBuildFile; fileRef = 585D92DC17D542D900BBE063 /* AE.png */; };
@@ -295,7 +294,6 @@
 /* Begin PBXFileReference section */
 		58400E0C17CEAADB0083EEB9 /* BLRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLRView.h; sourceTree = "<group>"; };
 		58400E0D17CEAADB0083EEB9 /* BLRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLRView.m; sourceTree = "<group>"; };
-		58400E0E17CEAADB0083EEB9 /* BLRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BLRView.xib; sourceTree = "<group>"; };
 		58400E1017CEAADB0083EEB9 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		58400E1117CEAADB0083EEB9 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		585D92DB17D542D900BBE063 /* AD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AD.png; sourceTree = "<group>"; };
@@ -964,7 +962,6 @@
 			children = (
 				58400E0C17CEAADB0083EEB9 /* BLRView.h */,
 				58400E0D17CEAADB0083EEB9 /* BLRView.m */,
-				58400E0E17CEAADB0083EEB9 /* BLRView.xib */,
 				58400E0F17CEAADB0083EEB9 /* Categories */,
 			);
 			path = BLR;
@@ -1335,7 +1332,6 @@
 				585D943717D542DA00BBE063 /* HU.png in Resources */,
 				585D945A17D542DA00BBE063 /* LV.png in Resources */,
 				58D1E85917D4F13F00617ED8 /* sallie-gardner-300x200-15.png in Resources */,
-				58400E1317CEAADB0083EEB9 /* BLRView.xib in Resources */,
 				585D93FA17D542DA00BBE063 /* CC.png in Resources */,
 				585D94B617D542DA00BBE063 /* TV.png in Resources */,
 			);

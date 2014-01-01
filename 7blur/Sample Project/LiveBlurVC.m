@@ -43,7 +43,7 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CountryCell"];
     
     //Load BLRView with UITableView as background content
-    self.blrView = [BLRView load:self.tableView];
+    self.blrView = [[BLRView alloc] initWithFrame:CGRectMake(0, -64, 320.0, 200) andParent:self.tableView];
     
     //Add BLRView to main view
     [self.view addSubview:self.blrView];
@@ -57,7 +57,8 @@
             [self.blrView blurWithColor:[BLRColorComponents lightEffect] updateInterval:.2f];
             
             //Slide down - drop down style
-            [self.blrView slideDown];
+            
+            [self.blrView showToPosition:CGPointMake(0, 64)];
             
             self.viewDirection = KShouldMoveUp;
             self.viewDirectionButton.image = [UIImage imageNamed:@"Up-30x30"];
@@ -68,8 +69,8 @@
         case KShouldMoveUp: {
             
             //Slide up
-            [self.blrView slideUp];
             
+            [self.blrView hideToPosition:CGPointMake(0, -64)];
             self.viewDirection = KShouldMoveDown;
             self.viewDirectionButton.image = [UIImage imageNamed:@"Down-30x30"];
             

@@ -65,10 +65,10 @@
         case KShouldPresent: {
             
             //Location point to place BLRView
-            CGPoint point = CGPointMake(0, 200);
+            CGPoint point = CGPointMake(0, 100);
             
             //Load BLRView with UIView as background content
-            self.blrView = [BLRView loadWithLocation:point parent:self.backgroundView];
+            self.blrView = [[BLRView alloc] initWithFrame:CGRectMake(point.x, point.y, 320.0, 200) andParent:self.imageView];
             
             //Container foreground frame updated to match BLRView (x, y, w, h)
             self.foregroundView.frame = CGRectMake(point.x, point.y, CGRectGetWidth(self.blrView.frame), CGRectGetHeight(self.blrView.frame));
