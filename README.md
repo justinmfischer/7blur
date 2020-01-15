@@ -212,7 +212,7 @@ PositionedBlurVC.m
 ````
 
 ### Unloading
-All examples unload or remove `BLRView` from the view heirarchy.
+All examples unload or remove `BLRView` from the view hierarchy.
 
 ```Objective-C
 - (void) viewWillDisappear:(BOOL) animated {
